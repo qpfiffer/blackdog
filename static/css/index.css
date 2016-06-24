@@ -1,0 +1,93 @@
+.oleg_logo {
+    margin: 0 auto;
+    width: 16em;
+    display: block;
+}
+#oleg_logo2 {
+    width: 20em;
+}
+#oleg_logo3 {
+    width: 22em;
+    margin-bottom: 2em;
+}
+.center_text {
+    margin-top: 3em;
+    text-align: center;
+}
+.right_text {
+    text-align: right;
+}
+#fading {
+    color: #F09E3C;
+    /* background-color: #F5EADC; */
+    min-height: 256px;
+    height: 600px;
+    position: relative;
+    background: url("/static/img/bg.jpg");
+    background-size: cover;
+    padding-top: 100px;
+}
+/*#fading div.grid {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+}*/
+#fading h2, #fading h1 {
+    font-weight: normal;
+    display: inline;
+}
+#curl2sudo {
+    color: #444;
+    position: absolute;
+    bottom: 2em;
+}
+#curl2sudo h4 {
+    font-weight: normal;
+    color: #DDD;
+}
+#curl2sudo pre {
+    white-space: pre-wrap;
+    width: 50%;
+    background-color: #DDD;
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 1.5em;
+}
+.download_btn {
+    text-align: center;
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    background-color: #F09E3C;
+    border-radius: 5px;
+    color: #FFF;
+    padding: 0.5em;
+}
+#pricing {
+    background-color: #F6F6F6;
+    padding-bottom: 2em;
+    padding-top: 2em;
+}
+#pricing img {
+    display: block;
+    height: 5em;
+    margin: 0 auto;
+}
+#pricing h1, #pricing h2 {
+    text-align: center;
+}
+#pricing article {
+    background-color: #FFF;
+    width: 60%;
+    margin: 0 auto;
+    min-height: 10em;
+    border: solid 1px #BBB;
+}
+.float_right_me {
+    float: right;
+}
+#editorials h1, #editorials h2 {
+    text-align: center;
+}

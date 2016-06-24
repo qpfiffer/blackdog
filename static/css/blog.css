@@ -1,0 +1,27 @@
+.blog_container {
+    width: 700px;
+    margin: 0 auto;
+}
+.author_name {
+    font-size: 14px;
+}
+.post_title {
+    margin-top: 0;
+    margin-bottom: 0em;
+}
+.blog_item {
+    border-bottom: 1px solid #BBB;
+}
+.comment_count {
+    margin-left: 0.5em;
+}
+/*
+.author_icon {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+}
+.the_pig {
+    background-image: url("../img/the_pig_0.png");
+}
+*/

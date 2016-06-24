@@ -1,0 +1,22 @@
+.downloadable {
+    padding-bottom: 2em;
+    background-color: #FFF;
+    margin: 0 auto;
+    min-height: 10em;
+    border: solid 1px #BBB;
+    text-align: center;
+}
+.downloadable img {
+    height: 5em;
+}
+.danger {
+    border: solid 2px #FBB;
+}
+pre {
+    overflow-x: overlay;
+    background-color: #DDD;
+    padding: 3px;
+}
+.older_release {
+    border-top: 1px solid #CCC;
+}

@@ -1,0 +1,99 @@
+/* Global */
+html {
+    color: #444;
+    font-family: 'Lato', sans-serif;
+    background-color: #F5EADC;
+}
+.mobile_show {
+    display: none;
+}
+#main_container {
+    background-color: #FFF;
+}
+a {
+    text-decoration: none;
+    color: #3570C3;
+}
+header h1 a {
+    vertical-align: middle;
+}
+a:hover {
+    color: #B14C6D;
+}
+#logo_col {
+}
+#olegdb_base_link, #right_side_nav {
+    margin-top: 1em;
+}
+header {
+    padding-bottom: 1em;
+}
+header a, footer a {
+    color: #510922;
+}
+header img {
+    display: inline;
+    width: 4em;
+    margin-right: 2em;
+}
+header, footer {
+    background-color: #F5EADC;
+}
+header ul, footer ul {
+    list-style: none;
+}
+header ul li, footer ul li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 1em;
+    margin-right: 1em;
+}
+header ul li:last-child {
+    margin-right: 0em;
+}
+header h1 {
+    display: inline;
+    margin-top: 0px;
+}
+header .pull-right, footer .pull-right {
+    text-align: right;
+}
+footer ul {
+    padding-left: 0px;
+}
+#busted_pixel {
+    position: fixed;
+    top: 420px;
+    left: 340px;
+    z-index: 1000;
+}
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: bold;
+}
+#git_icon {
+    width: 2em;
+    height: 2em;
+    background-size: 2em;
+    display: block;
+    background-image: url("../img/git.svg");
+}
+#git_icon:hover {
+    background-image: url("../img/git_hover.svg");
+}
+pre code {
+    display:block;
+    /*
+    padding:5px;
+    background-color:#DDD;
+    border:solid 1px #AAA
+    */
+}
+.perma a {
+    display: none;
+}
+.perma:hover a {
+    display: inline;
+}
