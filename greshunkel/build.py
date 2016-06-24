@@ -9,9 +9,6 @@ BLOGPOST_FILE = "blog_post.html"
 BLOGPOST_TEMPLATE = TEMPLATE_DIR + BLOGPOST_FILE
 BUILD_DIR = "built/"
 
-DOCUMENTATION_FILE = "documentation.html"
-DOCUMENTATION_TEMPLATE = TEMPLATE_DIR + DOCUMENTATION_FILE
-
 def _render_file(file_yo, context, output_filename=None):
     if file_yo.get("children"):
         # We DoNt ReNdEr FiLeS wItH cHiLdReN
@@ -213,8 +210,6 @@ def main(context):
     context['DEFAULT_LANGUAGE'] = DEFAULT_LANGUAGE
     all_templates = []
     required_dirs = ['./built', './built/blog']
-    for version in context['ALL_VERSIONS']:
-        required_dirs.append('./built/docs/' + version + "/" + DEFAULT_LANGUAGE)
 
     for dirn in required_dirs:
         if not path.exists(dirn):
@@ -222,7 +217,7 @@ def main(context):
 
     for radical_file in listdir(TEMPLATE_DIR):
         # We don't want to render the blog_post template by itself, or the documentation.
-        if TEMPLATE_DIR + radical_file in [BLOGPOST_TEMPLATE, DOCUMENTATION_TEMPLATE]:
+        if TEMPLATE_DIR + radical_file in [BLOGPOST_TEMPLATE]:
             continue
         if not radical_file.endswith(".html"):
             continue
@@ -249,19 +244,6 @@ def main(context):
         context['dumb_meta'] = [post]
         post_meta = parse_file(context, BLOGPOST_FILE)
         _render_file(post_meta, context, output_filename="blog/" + post['built_filename'])
-
-    for vers,vers_context in context['docs'].iteritems():
-        from greshunkel.context import DEFAULT_LANGUAGE
-        # UGLY HACK YOU DUMB SHIT
-        for docinfo,docvalue in vers_context.iteritems():
-            context[docinfo] = docvalue
-        desired_fname = './docs/{vers}/{lang}/{filename}'.format(
-            vers=vers, lang=DEFAULT_LANGUAGE, filename=DOCUMENTATION_FILE)
-        post_meta = parse_file(context, DOCUMENTATION_FILE)
-        _render_file(post_meta, context, output_filename=desired_fname)
-        # Clear out the context so we don't get issues
-        for docinfo,docvalue in vers_context.iteritems():
-            context[docinfo] = ""
 
     # BeCaUsE WhY NoT
     return 0
