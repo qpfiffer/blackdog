@@ -23,6 +23,20 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
         <header>
         </header>
         <div id="main_container">
+            <div id="map"></div>
+            <aside id="sidenav">
+                <div class="fullopac">
+                    <ul class="top">
+                        <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
+                        <li>Item 1</li>
+                        <li>Item 2</li>
+                    </ul>
+                    <ul class="bottom">
+                        <li>&copy; 2016 <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
+                        <li>Contact: <a href="mailto:shithouse@goatse.cx">shithouse@goatse.cx</a></li>
+                    </ul>
+                </div>
+            </aside>
             xXx CONTENT xXx
         </div>
         xXx END_BODY xXx
@@ -30,15 +44,11 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
         <div class="grid grid-pad">
             <div class="col-1-2">
                 <div class="content">
-                    <ul>
-                        <li>&copy; Copyright 2016, <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
-                    </ul>
                 </div>
             </div>
             <div class="col-1-2">
                 <div class="pull-right content">
                     <ul>
-                        <li>Contact: <a href="mailto:shithouse@goatse.cx">shithouse@goatse.cx</a></li>
                     </ul>
                 </div>
             </div>
@@ -48,6 +58,22 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
       window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
       heap.load("");
     </script> -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <script src="/static/js/gpx.js"></script>
+    <script type="text/javascript">
+        var layer = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+        });
+
+        var map = L.map('map', {
+        scrollWheelZoom: true,
+        center: [45.5231, -122.6765],
+        zoomControl: false,
+        zoom: 9,
+        });
+
+        map.addLayer(layer);
+    </script>
     xXx END_SCRIPTS xXx
     </body>
 </html>

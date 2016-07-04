@@ -1,0 +1,64 @@
+html {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+a {
+    color: #FA2A00;
+}
+
+a:visited {
+    color: #FA2A00;
+}
+
+#logo img {
+    height: 85px;
+    margin: 0 auto;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-bottom: 1em;
+}
+
+#map {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -100;
+}
+
+.fullopac {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#sidenav {
+    width: 15vw;
+    position: fixed;
+    color: #EFEFEF;
+    background: rgba(0,0,0,0.65);
+    height: 100vh;
+}
+
+#sidenav ul {
+    padding: 0;
+}
+
+#sidenav li {
+    list-style: none;
+}
+
+#sidenav .top {
+    font-size: 14px;
+}
+
+#sidenav .bottom {
+    position: absolute;
+    bottom: 3px;
+    font-size: 10px;
+}
