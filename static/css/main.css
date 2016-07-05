@@ -6,6 +6,10 @@ body {
     margin: 0px;
 }
 
+.grid {
+    max-width: initial;
+}
+
 a {
     color: #FA2A00;
 }
@@ -38,7 +42,6 @@ a:visited {
 }
 
 #sidenav {
-    width: 15vw;
     position: fixed;
     color: #EFEFEF;
     background: rgba(0,0,0,0.65);
