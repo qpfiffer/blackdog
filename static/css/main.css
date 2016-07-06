@@ -11,11 +11,12 @@ body {
 }
 
 a {
-    color: #FA2A00;
+    color: #EFEFEF;
+    text-decoration: none;
 }
 
-a:visited {
-    color: #FA2A00;
+a:hover {
+    text-decoration: underline;
 }
 
 #logo img {
@@ -43,7 +44,7 @@ a:visited {
 
 #sidenav {
     position: fixed;
-    color: #EFEFEF;
+    color: #B9BBAD;
     background: rgba(0,0,0,0.65);
     height: 100vh;
 }
