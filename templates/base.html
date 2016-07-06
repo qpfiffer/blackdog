@@ -22,8 +22,8 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
     <body>
         <header>
         </header>
-        <div id="map"></div>
         <div id="main_container" class="grid">
+            <div id="map"></div>
             <div id="sidenav" class="col-2-12">
                 <div class="content">
                     <div class="fullopac">
@@ -31,6 +31,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                             <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
                             <li><a href="#">About</a></li>
                             <li><a href="#">Rides</a></li>
+                            <li><a href="#">Financials</a></li>
                         </ul>
                         <ul class="bottom">
                             <li>&copy; 2016 <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
@@ -39,24 +40,16 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     </div>
                 </div>
             </div>
-            <div class="col-6-12">
-                xXx CONTENT xXx
+            <div id="main_nav" class="col-6-12">
+                <div class="content">
+                    <div class="modal">
+                        <p> {{message}} </p>
+                    </div>
+                </div>
             </div>
         </div>
         xXx END_BODY xXx
     <footer>
-        <div class="grid grid-pad">
-            <div class="col-1-2">
-                <div class="content">
-                </div>
-            </div>
-            <div class="col-1-2">
-                <div class="pull-right content">
-                    <ul>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </footer>
     <!-- <script type="text/javascript">
       window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
@@ -66,7 +59,10 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
     <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
     <script src="/static/js/gpx.js"></script>
-    <script type="text/javascript" src="/static/js/map.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script type="text/javascript">
+        init();
+    </script>
     xXx END_SCRIPTS xXx
     </body>
 </html>

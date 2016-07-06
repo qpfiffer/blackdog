@@ -66,3 +66,15 @@ a:hover {
     bottom: 3px;
     font-size: 10px;
 }
+
+#main_nav {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-right: 5vw;
+    padding: 1em;
+    right: 0;
+    position: fixed;
+    color: #B9BBAD;
+    background: rgba(0,0,0,0.65);
+    height: 90vh;
+}
