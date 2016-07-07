@@ -48,7 +48,13 @@ function create_app() {
     app = new Vue({
         el: "#main_container",
         data: {
-            message: "TEST!"
+            message: "TEST!",
+            modalShow: null
+        },
+        methods: {
+            setCurrentModal: function (name) {
+                app.modalShow = name;
+            }
         }
     });
 }

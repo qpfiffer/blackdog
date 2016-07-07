@@ -29,9 +29,9 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     <div class="fullopac">
                         <ul class="top">
                             <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Rides</a></li>
-                            <li><a href="#">Financials</a></li>
+                            <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
+                            <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
+                            <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
                         </ul>
                         <ul class="bottom">
                             <li>&copy; 2016 <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
@@ -40,10 +40,16 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     </div>
                 </div>
             </div>
-            <div id="main_nav" class="col-6-12">
+            <div v-show="modalShow" id="main_nav" class="col-6-12 modal">
                 <div class="content">
-                    <div class="modal">
-                        <p> {{message}} </p>
+                    <div v-show="modalShow == 'about'" id="about">
+                        <p>About</p>
+                    </div>
+                    <div v-show="modalShow == 'campaigns'" id="campaigns">
+                        <p>Campaigns</p>
+                    </div>
+                    <div v-show="modalShow == 'financials'" id="financials">
+                        <p>Financials</p>
                     </div>
                 </div>
             </div>
