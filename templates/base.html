@@ -49,7 +49,15 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                         <p>Campaigns</p>
                     </div>
                     <div v-show="modalShow == 'financials'" id="financials">
-                        <p>Financials</p>
+                        <h3>Financials</h3>
+                        <ul class="dotted-list">
+                            <li v-for="item in financials">
+                                <span>{{$index + 1}}. {{ item[0] }}</span><span>${{item[1]}}</span>
+                            </li>
+                        </ul>
+                        <ul class="financeTotal">
+                            <li id="financeTotals" ><span>Total</span><span>${{ financeTotals }}</span</li>
+                        </ul>
                     </div>
                 </div>
             </div>

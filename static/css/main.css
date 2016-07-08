@@ -78,3 +78,60 @@ a:hover {
     background: rgba(0,0,0,0.65);
     height: 90vh;
 }
+
+.dotted-list {
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+.dotted-list span:first-child {
+    padding-right: 0.33em;
+    background: #222;
+}
+
+.dotted-list li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content:
+    ". . . . . . . . . . . . . . . . . . . . "
+    ". . . . . . . . . . . . . . . . . . . . "
+    ". . . . . . . . . . . . . . . . . . . . "
+    ". . . . . . . . . . . . . . . . . . . . "
+}
+
+.dotted-list span + span {
+    background: #222;
+    float: right;
+    padding-left: 0.33em;
+}
+
+.modal {
+    background: #222 !important;
+}
+
+#financeTotals {
+    content: initial;
+}
+
+ul.financeTotal {
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+
+ul.financeTotal li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+}
+
+ul.financeTotal span + span {
+    background: #222;
+    float: right;
+    padding-left: 0.33em;
+}

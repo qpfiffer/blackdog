@@ -49,11 +49,25 @@ function create_app() {
         el: "#main_container",
         data: {
             message: "TEST!",
-            modalShow: null
+            modalShow: null,
+            financials: [
+                ["Buckles", "1.90"],
+                ["Garmin Edge 20", "60.00"],
+                ["Map of the West Coast", "6.00"]
+            ],
         },
         methods: {
-            setCurrentModal: function (name) {
+            setCurrentModal: function(name) {
                 app.modalShow = name;
+            }
+        },
+        computed: {
+            financeTotals: function() {
+                var total = 0;
+                for (var x of this.financials) {
+                    total += parseFloat(x[1]);
+                }
+                return total;
             }
         }
     });
