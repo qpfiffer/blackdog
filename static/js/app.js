@@ -29,18 +29,18 @@ function create_map() {
 
     map.addLayer(layer);
 
-    var rides = ['671E4342', '671C3011'];
+    var rides = ['67A82825', '67AA3532'];
     for (var idx in rides) {
         var ride = rides[idx];
         var gpx = '/data/rides/' + ride + '.gpx';
         _add_gpx(map, gpx, "#FA2A00", 1.0);
     }
 
-    var courses = ['The_Oregon_Outback_-_OB_Edition', 'Home_to_Milo'];
+    var courses = ['Home_to_Milo'];
     for (var idx in courses) {
         var course = courses[idx];
         var gpx = '/data/courses/' + course + '.gpx';
-        _add_gpx(map, gpx, "#FA2A00", 0.6);
+        _add_gpx(map, gpx, "#002A00", 0.6);
     }
 }
 
