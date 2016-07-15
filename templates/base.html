@@ -43,11 +43,12 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
             </div>
             <div v-show="modalShow" id="main_nav" class="col-6-12 modal">
                 <div class="content">
+                    <p class="cancelIcon" v-on:click="modalShow = false"><i>&#xd7;</i></p>
                     <div v-show="modalShow == 'about'" id="about">
-                        <p>About</p>
+                        <h3>About</h3>
                     </div>
                     <div v-show="modalShow == 'campaigns'" id="campaigns">
-                        <p>Campaigns</p>
+                        <h3>Campaigns</h3>
                     </div>
                     <div v-show="modalShow == 'financials'" id="financials">
                         <h3>Financials</h3>

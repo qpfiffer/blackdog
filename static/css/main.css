@@ -139,3 +139,13 @@ ul.financeTotal span + span {
     float: right;
     padding-left: 0.33em;
 }
+
+.cancelIcon {
+    font-size: 36px;
+    float: right;
+    margin: 0 auto;
+}
+
+.cancelIcon:hover, .cancelIcon i:hover {
+    cursor: pointer;
+}
