@@ -29,6 +29,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     <div class="fullopac">
                         <ul class="top">
                             <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
+                            <li><h2>{{ currentCampaign["name"] }}</h2></li>
                             <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
                             <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
                             <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
@@ -70,8 +71,8 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
       heap.load("");
     </script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
     <script src="/static/js/gpx.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
     <script type="text/javascript">
