@@ -14,6 +14,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
         <meta charset="UTF-8">
         <meta name=viewport content="width=device-width, initial-scale=1">
         xXx META xXx
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link rel="stylesheet" media="all" href="/static/css/simplegrid.css" />
         <link rel="stylesheet" media="all" href="/static/css/main.css" />
         xXx SCRIPTS xXx
@@ -29,9 +30,9 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     <div class="fullopac">
                         <ul class="top">
                             <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
-                            <li><h2>{{ currentCampaign["name"] }}</h2></li>
                             <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
                             <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
+                            <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li>
                             <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
                         </ul>
                         <ul class="bottom">
@@ -43,7 +44,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
             </div>
             <div v-show="modalShow" id="main_nav" class="col-6-12 modal">
                 <div class="content">
-                    <p class="cancelIcon" v-on:click="modalShow = false"><i>&#xd7;</i></p>
+                    <p class="cancelIcon" v-on:click="modalShow = false">&#xd7;</p>
                     <div v-show="modalShow == 'about'" id="about">
                         <h3>About</h3>
                     </div>

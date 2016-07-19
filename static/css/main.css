@@ -143,9 +143,18 @@ ul.financeTotal span + span {
 .cancelIcon {
     font-size: 36px;
     float: right;
-    margin: 0 auto;
+    display: inline;
+    position: relative;
+    margin: 0;
+    top: -0.25em;
+    font-style: normal !important;
 }
 
 .cancelIcon:hover, .cancelIcon i:hover {
     cursor: pointer;
+}
+
+span.currentCampaign {
+    font-size: 12px;
+    margin-left: 1em;
 }

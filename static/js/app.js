@@ -3,11 +3,13 @@ function _add_gpx(map, url, color, opacity, showMetaPins) {
     var pinsOptions = {
         startIconUrl: '/static/img/pin-icon-start.png',
         endIconUrl: '/static/img/pin-icon-end.png',
+        iconUrl: null,
         shadowUrl: null
     };
 
     var noPinsOptions = {
         startIconUrl: null,
+        iconUrl: null,
         endIconUrl: null,
         shadowUrl: null
     };
