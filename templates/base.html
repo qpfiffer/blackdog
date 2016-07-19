@@ -34,6 +34,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                             <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
                             <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li>
                             <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
+                            <li><a v-on:click="setCurrentModal('journal')" href="#">Journal</a></li>
                         </ul>
                         <ul class="bottom">
                             <li>&copy; 2016 <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
@@ -61,6 +62,13 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                         <ul class="financeTotal">
                             <li id="financeTotals" ><span>Total</span><span>${{ financeTotals }}</span</li>
                         </ul>
+                    </div>
+                    <div style="background-image: url({{currentJournalEntry.bgImage}});" v-show="modalShow == 'journal'" id="journal">
+                        <div class="journalEntryHeaderBlock">
+                            <h3>{{ currentJournalEntry.title }}</h3>
+                            <h4>{{ currentJournalEntry.date }}</h4>
+                            <h4>{{ currentJournalEntry.author }}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
