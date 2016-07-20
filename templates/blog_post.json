@@ -5,6 +5,7 @@ xXx CONTENT xXx
     "title": "xXx post_meta$title xXx",
     "author": "xXx post_meta$author xXx",
     "date": "xXx post_meta$date xXx",
+    "bgImage": "xXx post_meta$bgImage xXx",
     "content": xXx post_meta$content xXx
     xXx BBL xXx
 }
