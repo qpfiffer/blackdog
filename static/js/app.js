@@ -6,6 +6,11 @@ var campaigns = [
         rides: ['679G1357', '67A82825', '67AA3532'],
         courses: ['Home_to_Milo'],
     },
+    {
+        name: "Boating 7/15/2016",
+        rides: ['67GD0318'],
+        courses: [],
+    },
 ];
 
 var journalEntries = [
@@ -28,7 +33,7 @@ var allData = {
         ["Map of the West Coast", "6.00"]
     ],
     campaigns: campaigns,
-    currentCampaign: campaigns[0],
+    currentCampaign: campaigns[0], // Don't use this. Use the function.
     journalEntries: journalEntries,
     currentJournalEntry: journalEntries[0]
 }
@@ -118,5 +123,5 @@ function create_app() {
 function init() {
     create_map();
     create_app();
-    app.changeCampaign(0);
+    app.changeCampaign(1);
 }
