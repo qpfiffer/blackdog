@@ -3,7 +3,7 @@ from greshunkel.utils import parse_variable
 from greshunkel.slimdown import Slimdown
 
 from os import listdir, walk
-import subprocess, re
+import subprocess, re, json
 
 DEFAULT_LANGUAGE = "en"
 BASE_CONTEXT = {}
@@ -38,7 +38,7 @@ def build_blog_context(default_context):
             if not reading_meta:
                 all_text += line
 
-        new_post['content'] = slimmin.render(all_text)
+        new_post['content'] = json.dumps(slimmin.render(all_text))
         new_post['preview'] = new_post['content'][:300] + "&hellip;"
         # ThIs DoEsNt WoRk WiTh JsON StuFf
         # SO FUCKIIN HACK IT
@@ -48,5 +48,11 @@ def build_blog_context(default_context):
         default_context['POSTS'].append(new_post)
         muh_file.close()
     default_context['POSTS'] = sorted(default_context['POSTS'], key=lambda x: x["date"], reverse=True)
+    for index in range(len(default_context['POSTS'])):
+        # Hacks on fucking hacks
+        if index != len(default_context['POSTS']) - 1:
+            default_context['POSTS'][index]['comma'] = ','
+        else:
+            default_context['POSTS'][index]['comma'] = ''
     return default_context
 

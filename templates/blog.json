@@ -3,12 +3,12 @@ xXx CONTENT xXx
 [
     xXx LOOP blog_meta POSTS xXx
     {
-        bgImage: "xXx blog_meta$bgImage xXx",
-        title: "xXx blog_meta$title xXx",
-        date: "xXx blog_meta$date xXx",
-        author: "xXx blog_meta$author xXx",
-        dataLink: "xXx blog_meta$link xXx",
-    },
+        "bgImage": "xXx blog_meta$bgImage xXx",
+        "title": "xXx blog_meta$title xXx",
+        "date": "xXx blog_meta$date xXx",
+        "author": "xXx blog_meta$author xXx",
+        "dataLink": "xXx blog_meta$link xXx"
+    }xXx blog_meta$comma xXx
     xXx BBL xXx
 ]
 xXx TTYL xXx

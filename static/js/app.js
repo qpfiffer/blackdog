@@ -12,10 +12,10 @@ var allData = {
         ["Garmin Edge 20", "60.00"],
         ["Map of the West Coast", "6.00"]
     ],
-    campaigns: campaigns,
-    currentCampaign: campaigns[0], // Don't use this. Use the function.
-    journalEntries: journalEntries,
-    currentJournalEntry: journalEntries[0]
+    campaigns: null,
+    currentCampaign: null,
+    journalEntries: null,
+    currentJournalEntry: null
 }
 
 function _add_gpx(map, url, color, opacity, showMetaPins) {
@@ -78,6 +78,15 @@ function create_app() {
         el: "#main_container",
         data: allData,
         methods: {
+            changeJournalEntry: function(idx) {
+                app.currentJournalEntry = null;
+                this.$http.get(app.journalEntries[idx].dataLink).then((response) => {
+                    var parsed = JSON.parse(response.body);
+                    app.currentJournalEntry = parsed;
+                }, (response) => {
+                    // NOPE
+                });
+            },
             changeCampaign: function(idx) {
                 app.currentCampaign = app.campaigns[idx];
                 erase_map();
@@ -96,6 +105,25 @@ function create_app() {
                 }
                 return total;
             }
+        },
+        ready() {
+            this.$http.get('/blog.json').then((response) => {
+                var parsed = JSON.parse(response.body);
+                this.journalEntries = parsed;
+                this.currentJournalEntry = null;
+                this.changeJournalEntry(0);
+            }, (response) => {
+                // Nope.
+            });
+
+            this.$http.get('/campaigns.json').then((response) => {
+                var parsed = JSON.parse(response.body);
+                this.campaigns = parsed;
+                this.currentCampaign = parsed[0];
+                this.changeCampaign(1);
+            }, (response) => {
+                // Nope.
+            });
         }
     });
 }
@@ -103,5 +131,4 @@ function create_app() {
 function init() {
     create_map();
     create_app();
-    app.changeCampaign(1);
 }
