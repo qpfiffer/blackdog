@@ -3,7 +3,7 @@ xXx CONTENT xXx
 [
     xXx LOOP blog_meta POSTS xXx
     {
-        bgImage: "/static/img/journal/bg01.png",
+        bgImage: "xXx blog_meta$bgImage xXx",
         title: "xXx blog_meta$title xXx",
         date: "xXx blog_meta$date xXx",
         author: "xXx blog_meta$author xXx",

@@ -1,6 +1,7 @@
 ---
 title:Test Post
 author:Quinlan Pfiffer
+bgImage:/static/img/journal/bg01.png
 date: 2016-06-23
 ---
 
