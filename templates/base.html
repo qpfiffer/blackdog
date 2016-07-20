@@ -19,6 +19,11 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
         <link rel="stylesheet" media="all" href="/static/css/main.css" />
         xXx SCRIPTS xXx
         <link rel="stylesheet" media="(max-width: 800px)" href="/static/css/mobile.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+        <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+        <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+        <script src="/static/js/gpx.js"></script>
     </head>
     <body>
         <header>
@@ -72,15 +77,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                                 <h4><span>&#x1f4c5;</span>{{ currentJournalEntry.date }}</h4>
                                 <h4><span>&#x270e;</span>{{ currentJournalEntry.author }}</h4>
                             </div>
-                            <p>Man is distinguished, not only by his reason, but by this singular passion from
-                            other animals, which is a lust of the mind, that by a perseverance of delight
-                            in the continued and indefatigable generation of knowledge, exceeds the short
-                            vehemence of any carnal pleasure.</p>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sollicitudin commodo urna, quis blandit tellus accumsan lacinia. Praesent semper neque at quam condimentum maximus. Quisque vestibulum odio lorem, in pellentesque velit rhoncus eu. Phasellus at condimentum ante. Mauris finibus pellentesque odio placerat cursus. Pellentesque placerat, magna ut lacinia iaculis, neque lectus lacinia justo, nec malesuada nibh magna ut justo. Integer sed tristique augue, id elementum metus. Quisque elementum est eu sem placerat maximus. Proin eget pellentesque elit. Praesent tempor mauris id tortor pharetra commodo. Vestibulum metus tortor, luctus ac dignissim id, egestas vitae tellus. Morbi vehicula lectus condimentum magna posuere tristique et ac massa.</p>
-                            <p>Ut vel massa ut dui blandit laoreet ac non elit. Nullam hendrerit sapien tellus, nec vulputate lorem aliquet et. Praesent sit amet nisl in felis vehicula mollis. Nullam dolor ligula, tristique sit amet sem sit amet, maximus tempor libero. Donec venenatis, libero in congue imperdiet, leo purus lobortis nisl, vel tincidunt elit orci ornare ligula. Phasellus et enim vel sem luctus imperdiet. Donec euismod pulvinar hendrerit. Morbi fermentum lectus eu sem imperdiet aliquet. Cras a nibh ac lectus tincidunt pretium. Mauris malesuada nisi vel dapibus vestibulum. Donec efficitur arcu at sagittis auctor. Aliquam posuere magna eget libero finibus pellentesque. Nulla congue facilisis commodo. Vestibulum mollis enim et pretium rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc elementum facilisis lectus vel posuere.</p>
-                            <p>Mauris sagittis at mauris et viverra. Donec varius nunc vitae rutrum varius. Nulla a convallis elit. Suspendisse malesuada turpis vitae augue consectetur, non malesuada est blandit. Integer non augue tellus. Morbi vulputate sem aliquet mollis aliquet. Praesent ornare iaculis eros, eu aliquam tortor lacinia a.</p>
-                            <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec eu accumsan ipsum. Proin nec nisl in nunc tincidunt aliquet. Morbi ut tristique leo. Nam sit amet libero arcu. Cras hendrerit mattis molestie. Ut ante eros, sodales quis dignissim in, ullamcorper eget nisl. Nam vel odio eget purus interdum placerat. Etiam orci enim, elementum sit amet euismod eget, feugiat a metus. Sed quis ultricies est, quis interdum nibh. Donec mattis mauris at sollicitudin ullamcorper.</p>
-                            <p>Aenean mattis orci eget eros tristique, dignissim ullamcorper tortor volutpat. Quisque massa arcu, consectetur porta vehicula vel, pharetra sed lorem. Pellentesque sagittis nulla cursus sem sodales eleifend. Vestibulum lacinia, neque sed pretium convallis, lectus lacus dictum velit, ullamcorper efficitur sem nulla ut felis. Nulla dapibus justo convallis, elementum lorem nec, posuere orci. Sed ac tempus est, sit amet blandit magna. Fusce fermentum finibus leo nec fermentum. Aenean at eros sapien.</p>
+                            {{currentJournalEntry.body}}
                         </div>
                     </div>
                 </div>
@@ -93,10 +90,6 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
       window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
       heap.load("");
     </script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
-    <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
-    <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
-    <script src="/static/js/gpx.js"></script>
     <script type="text/javascript" src="/static/js/app.js"></script>
     <script type="text/javascript">
         init();

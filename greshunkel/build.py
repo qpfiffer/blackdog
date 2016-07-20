@@ -5,7 +5,7 @@ import re
 
 POSTS_DIR = "posts/"
 TEMPLATE_DIR = "templates/"
-BLOGPOST_FILE = "blog_post.html"
+BLOGPOST_FILE = "blog_post.json"
 BLOGPOST_TEMPLATE = TEMPLATE_DIR + BLOGPOST_FILE
 BUILD_DIR = "built/"
 
@@ -219,7 +219,7 @@ def main(context):
         # We don't want to render the blog_post template by itself, or the documentation.
         if TEMPLATE_DIR + radical_file in [BLOGPOST_TEMPLATE]:
             continue
-        if not radical_file.endswith(".html"):
+        if not radical_file.endswith(".html") and not radical_file.endswith(".json"):
             continue
         file_meta = parse_file(context, radical_file)
         all_templates.append(file_meta)

@@ -1,0 +1,11 @@
+xXx PARENT=templates/json_base.json xXx
+xXx CONTENT xXx
+{
+    xXx LOOP post_meta dumb_meta xXx
+    title: "xXx post_meta$title xXx",
+    author: "xXx post_meta$author xXx",
+    date: "xXx post_meta$date xXx",
+    content: "xXx post_meta$content xXx"
+    xXx BBL xXx
+}
+xXx TTYL xXx

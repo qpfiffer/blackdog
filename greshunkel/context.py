@@ -40,9 +40,11 @@ def build_blog_context(default_context):
 
         new_post['content'] = slimmin.render(all_text)
         new_post['preview'] = new_post['content'][:300] + "&hellip;"
-        new_post['link'] = "blog/{}".format(post.replace("markdown", "html"))
+        # ThIs DoEsNt WoRk WiTh JsON StuFf
+        # SO FUCKIIN HACK IT
+        new_post['link'] = "blog/{}".format(post.replace("markdown", "json"))
         new_post['filename'] = post
-        new_post['built_filename'] = post.replace("markdown", "html")
+        new_post['built_filename'] = post.replace("markdown", "json")
         default_context['POSTS'].append(new_post)
         muh_file.close()
     default_context['POSTS'] = sorted(default_context['POSTS'], key=lambda x: x["date"], reverse=True)

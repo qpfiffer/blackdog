@@ -1,27 +1,7 @@
 var map = null;
 
-var campaigns = [
-    {
-        name: "Home to Milo 7/9/16",
-        rides: ['679G1357', '67A82825', '67AA3532'],
-        courses: ['Home_to_Milo'],
-    },
-    {
-        name: "Boating 7/15/2016",
-        rides: ['67GD0318'],
-        courses: [],
-    },
-];
-
-var journalEntries = [
-    {
-        bgImage: "/static/img/journal/bg01.png",
-        title: "Test Entry",
-        entry: "This is a test of the journalling system.",
-        date: "2016/07/18",
-        author: "QP"
-    }
-];
+var campaigns = null;
+var journalEntries = null;
 
 var allData = {
     message: "TEST!",
