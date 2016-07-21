@@ -120,7 +120,7 @@ function create_app() {
                 var parsed = JSON.parse(response.body);
                 this.campaigns = parsed;
                 this.currentCampaign = parsed[0];
-                this.changeCampaign(1);
+                this.changeCampaign(0);
             }, (response) => {
                 // Nope.
             });
