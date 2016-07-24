@@ -186,7 +186,7 @@ span.currentCampaign {
 .journalTitle {
     border-bottom: solid 1px #B9BBAD;
     padding-bottom: 0.5em;
-    font-size: 36px;
+    font-size: 24px;
 }
 
 .journalEntryHeaderBlock h3 {
@@ -203,6 +203,8 @@ span.currentCampaign {
     color: #B9BBAD;
 }
 .journalContent {
-    font-size: 24px;
+    font-size: 18px;
     padding: 1em;
+    padding-left: 4em;
+    padding-right: 4em;
 }
