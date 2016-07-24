@@ -93,12 +93,12 @@ h1,h2,h3,h4,h5,h6 {
     list-style: none;
 }
 
-.dotted-list span:first-child {
+.dotted-list span.dotted:first-child {
     padding-right: 0.33em;
     background: #222;
 }
 
-.dotted-list li:before {
+.dotted-list li.dotted:before {
     float: left;
     width: 0;
     white-space: nowrap;
@@ -109,7 +109,7 @@ h1,h2,h3,h4,h5,h6 {
     ". . . . . . . . . . . . . . . . . . . . "
 }
 
-.dotted-list span + span {
+.dotted-list span.dotted + span.dotted {
     background: #222;
     float: right;
     padding-left: 0.33em;

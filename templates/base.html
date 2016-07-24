@@ -60,8 +60,13 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     <div v-show="modalShow == 'financials'" id="financials">
                         <h3>Financials</h3>
                         <ul class="dotted-list">
-                            <li v-for="item in financials">
-                                <span>{{$index + 1}}. {{ item[0] }}</span><span>${{item[1]}}</span>
+                            <li v-for="(key, financeCategory) in financials">
+                                <h4>{{key}}</h4>
+                                <ul class="dotted-list">
+                                    <li class="dotted" v-for="item in financeCategory">
+                                        <span class="dotted">{{$index + 1}}. {{ item[0] }}</span><span class="dotted">${{item[1]}}</span>
+                                    </li>
+                                </ul>
                             </li>
                         </ul>
                         <ul class="financeTotal">

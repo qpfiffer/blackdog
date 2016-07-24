@@ -7,11 +7,24 @@ var allData = {
     message: "TEST!",
     modalShow: null,
     showMetaPins: false,
-    financials: [
-        ["Buckles", "1.90"],
-        ["Garmin Edge 20", "60.00"],
-        ["Map of the West Coast", "6.00"]
-    ],
+    financials: {
+        "Naviation": [
+            ["Garmin Edge 20", "60.00"],
+            ["Map of the West Coast", "6.00"],
+        ],
+        "Camping": [
+            ["Buckles", "1.90"],
+            ["Etekcity Ultralight Backpacking Stove", "10.99"],
+            ["Big Agnes Scout UL2", "149.99"],
+            ["REI Kingdom 4 Tent Footprint", "29.83"],
+            ["REI Tent Stake", "12.99"],
+        ],
+        "Bags": [],
+        "Bikes": [
+            ["Karate Monkey SS Frame (M)", "300.00"],
+            ["Karate Monkey Ops (S)", "640.00"],
+        ],
+    },
     campaigns: null,
     currentCampaign: null,
     journalEntries: null,
@@ -100,8 +113,10 @@ function create_app() {
         computed: {
             financeTotals: function() {
                 var total = 0;
-                for (var x of this.financials) {
-                    total += parseFloat(x[1]);
+                for (var x in this.financials) {
+                    for (var y of this.financials[x]) {
+                        total += parseFloat(y[1]);
+                    }
                 }
                 return total;
             }
