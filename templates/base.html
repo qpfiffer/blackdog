@@ -48,7 +48,7 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                     </div>
                 </div>
             </div>
-            <div v-show="modalShow" id="main_nav" class="col-6-12 modal">
+            <div v-show="modalShow" id="main_nav" v-bind:class="{ 'col-6-12': modalShow != 'journal', 'col-9-12': modalShow == 'journal' }" class="modal">
                 <div class="content">
                     <p class="cancelIcon" v-on:click="modalShow = false">&#xd7;</p>
                     <div v-show="modalShow == 'about'" id="about">
@@ -82,7 +82,9 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
                                 <h4><span>&#x1f4c5;</span>{{ currentJournalEntry.date }}</h4>
                                 <h4><span>&#x270e;</span>{{ currentJournalEntry.author }}</h4>
                             </div>
-                            {{{currentJournalEntry.content}}}
+                            <div class="journalContent">
+                                {{{currentJournalEntry.content}}}
+                            </div>
                         </div>
                     </div>
                 </div>

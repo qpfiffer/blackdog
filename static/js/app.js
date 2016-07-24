@@ -17,7 +17,9 @@ var allData = {
             ["Etekcity Ultralight Backpacking Stove", "10.99"],
             ["Big Agnes Scout UL2", "149.99"],
             ["REI Kingdom 4 Tent Footprint", "29.83"],
-            ["REI Tent Stake", "12.99"],
+            ["REI Adjustable Tarp Pole", "12.99"],
+            ["iPerb Aluminum Tent Stakes (14)", "9.59"],
+
         ],
         "Bags": [],
         "Bikes": [
