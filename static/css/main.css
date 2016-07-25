@@ -79,7 +79,7 @@ h1,h2,h3,h4,h5,h6 {
     position: fixed;
     color: #B9BBAD;
     background: rgba(0,0,0,0.65);
-    height: 90vh;
+    min-height: 90vh;
 }
 
 #about, #campaigns, #financials {
@@ -149,10 +149,14 @@ ul.financeTotal span + span {
     font-size: 36px;
     float: right;
     display: inline;
-    position: relative;
+    position: absolute;
+    top: 0.1em;
+    right: 0.5em;
     margin: 0;
     font-style: normal !important;
     opacity: 0.7;
+    border-radius: 3px 3px;
+    background-color: rgba(0,0,0,0.65);
 }
 
 .cancelIcon:hover {
@@ -169,7 +173,7 @@ span.currentCampaign {
 }
 #journal {
     /* padding: 0.5em; */
-    height: 85vh;
+    height: 90vh;
     width: 100%;
     overflow-y: scroll;
 }
@@ -180,6 +184,8 @@ span.currentCampaign {
 }
 .journalEntryHeaderBlock {
     padding: 0.5em;
+    padding-left: 6em;
+    padding-right: 6em;
     /* border-radius: 3px 3px;
     background-color: rgba(0,0,0,0.65); */
 }
@@ -204,9 +210,6 @@ span.currentCampaign {
 }
 .journalContent {
     font-size: 18px;
-    padding: 1em;
-    padding-left: 4em;
-    padding-right: 4em;
 }
 .journalContent a {
     color: #fa2a00;
