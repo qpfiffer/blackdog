@@ -21,7 +21,9 @@ var allData = {
             ["iPerb Aluminum Tent Stakes (14)", "9.59"],
 
         ],
-        "Bags": [],
+        "Bags": [
+            ["REI 25 Liter Drybag (w/ $20.00 gift card)", "1.95"],
+        ],
         "Bikes": [
             ["Karate Monkey SS Frame (M)", "300.00"],
             ["Karate Monkey Ops (S)", "640.00"],
