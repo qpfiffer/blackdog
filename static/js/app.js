@@ -40,14 +40,18 @@ function _add_gpx(map, url, color, opacity, showMetaPins) {
         startIconUrl: '/static/img/pin-icon-start.png',
         endIconUrl: '/static/img/pin-icon-end.png',
         iconUrl: null,
-        shadowUrl: null
+        shadowUrl: null,
+        defaultIconURL: '/static/img/marker-icon.png',
+        defaultIconShadowURL: '/static/img/marker-icon-shadow.png'
     };
 
     var noPinsOptions = {
         startIconUrl: null,
         iconUrl: null,
         endIconUrl: null,
-        shadowUrl: null
+        shadowUrl: null,
+        defaultIconURL: '/static/img/marker-icon.png',
+        defaultIconShadowURL: '/static/img/marker-icon-shadow.png'
     };
 
     var thing = new L.GPX(url, { async: true,

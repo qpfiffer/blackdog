@@ -343,7 +343,10 @@ L.GPX = L.FeatureGroup.extend({
           var marker = new L.Marker(ll, {
               clickable: true,
               title: name,
-              icon: symIcon ? new L.GPXTrackIcon({iconUrl: symIcon}) : new L.Icon.Default()
+              icon: symIcon ? new L.GPXTrackIcon({iconUrl: symIcon}) : new L.GPXTrackIcon({
+                  iconUrl: options.marker_options.defaultIconURL,
+                  shadowUrl: options.marker_options.defaultIconShadowURL
+              })
           });
             marker.bindPopup("<b>" + name + "</b>" + (desc.length > 0 ? '<br>' + desc : '')).openPopup();
           this.fire('addpoint', {point: marker});
