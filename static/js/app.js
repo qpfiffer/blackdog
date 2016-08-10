@@ -8,7 +8,7 @@ var allData = {
     modalShow: null,
     showMetaPins: false,
     financials: {
-        "Naviation": [
+        "Navigation": [
             ["Garmin Edge 20", "60.00"],
             ["Map of the West Coast", "6.00"],
         ],
@@ -28,6 +28,16 @@ var allData = {
             ["Karate Monkey SS Frame (M)", "300.00"],
             ["Karate Monkey Ops (S)", "640.00"],
         ],
+        "Sewing Supplies": [
+            ["White Chalk", "3.93"],
+            ["Small Binder Clips", "3.33"],
+            ["Metal Bobbins (15)", "3.99"],
+            ["1\" Webbing", "6.88"],
+            ["7/8\" Bias Tape", "9.24"],
+            ["1\" Plastic Buckles (12)", "4.99"],
+            ["Bias Tape Foot for Sewing Machine", "13.99"],
+            ["1\" Plastic Triglide Slides (20)", "6.62"],
+        ]
     },
     campaigns: null,
     currentCampaign: null,
@@ -143,7 +153,7 @@ function create_app() {
                 var parsed = JSON.parse(response.body);
                 this.campaigns = parsed;
                 this.currentCampaign = parsed[0];
-                this.changeCampaign(0);
+                this.changeCampaign(1);
             }, (response) => {
                 // Nope.
             });
