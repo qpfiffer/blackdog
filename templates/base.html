@@ -50,7 +50,8 @@ Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
             </div>
             <div v-show="modalShow" id="main_nav" v-bind:class="{ 'col-6-12': modalShow != 'journal', 'col-9-12': modalShow == 'journal' }" class="modal">
                 <div class="content">
-                    <p class="cancelIcon" v-on:click="modalShow = false">&#xd7;</p>
+                    <p class="cancelIconScrollable" v-if="modalShow =='journal'" v-on:click="modalShow = false">&#xd7;</p>
+                    <p class="cancelIcon" v-else v-on:click="modalShow = false">&#xd7;</p>
                     <div v-show="modalShow == 'about'" id="about">
                         <h3>About</h3>
                     </div>
