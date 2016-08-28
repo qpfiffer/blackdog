@@ -188,7 +188,7 @@ span.currentCampaign {
     font-size: 12px;
     margin-left: 1em;
 }
-#journal {
+#journal, #financials {
     /* padding: 0.5em; */
     height: 90vh;
     width: 100%;
