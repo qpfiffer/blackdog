@@ -15,6 +15,11 @@ xXx CONTENT xXx
         "name": "Boating 7/15/2016",
         "rides": ["67GD0318"],
         "courses": []
+    },
+    {
+        "name": "Key West 1",
+        "rides": ["68V95937","68VD4151"],
+        "courses": []
     }
 ]
 xXx TTYL xXx
