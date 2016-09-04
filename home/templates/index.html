@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  ____ ____  _____ ____  _   _ _   _ _   _ _  _______ _
+ / ___|  _ \| ____/ ___|| | | | | | | \ | | |/ / ____| |
+| |  _| |_) |  _| \___ \| |_| | | | |  \| | ' /|  _| | |
+| |_| |  _ <| |___ ___) |  _  | |_| | |\  | . \| |___| |___
+ \____|_| \_\_____|____/|_| |_|\___/|_| \_|_|\_\_____|_____|
+
+Proudly generated with GRESHUNKEL, a static site generator for the dead inside.
+-->
+<html>
+    <head>
+        <title>BLACKDOG</title>
+        <meta charset="UTF-8">
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        xXx META xXx
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link rel="stylesheet" media="all" href="/static/css/simplegrid.css" />
+        <link rel="stylesheet" media="all" href="/static/css/main.css" />
+        xXx SCRIPTS xXx
+        <link rel="stylesheet" media="(max-width: 800px)" href="/static/css/mobile.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+        <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
+        <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
+        <script src="/static/js/gpx.js"></script>
+    </head>
+    <body>
+        <header>
+        </header>
+        <div id="main_container" class="grid">
+            <div id="map"></div>
+            <div id="sidenav" class="col-2-12">
+                <div class="content">
+                    <div class="fullopac">
+                        <ul class="top">
+                            <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
+                            <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
+                            <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
+                            <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li>
+                            <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
+                            <li><a v-on:click="setCurrentModal('journal')" href="#">Journal</a></li>
+                        </ul>
+                        <ul class="bottom">
+                            <li>&copy; 2016 <a href="http://qpfiffer.com/">Quinlan Pfiffer</a></li>
+                            <li>Contact: <a href="mailto:shithouse@goatse.cx">shithouse@goatse.cx</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div v-show="modalShow" id="main_nav" v-bind:class="{ 'col-6-12': modalShow != 'journal', 'col-9-12': modalShow == 'journal' }" class="modal">
+                <div class="content">
+                    <p class="cancelIconScrollable" v-if="modalShow =='journal' || modalShow == 'financials'" v-on:click="modalShow = false">&#xd7;</p>
+                    <p class="cancelIcon" v-else v-on:click="modalShow = false">&#xd7;</p>
+                    <div v-show="modalShow == 'about'" id="about">
+                        <h3>About</h3>
+                    </div>
+                    <div v-show="modalShow == 'campaigns'" id="campaigns">
+                        <h3>Campaigns</h3>
+                    </div>
+                    <div v-show="modalShow == 'financials'" id="financials">
+                        <h3>Financials</h3>
+                        <ul class="dotted-list">
+                            <li v-for="(key, financeCategory) in financials">
+                                <h4>{{key}}</h4>
+                                <ul class="dotted-list">
+                                    <li class="dotted" v-for="item in financeCategory">
+                                        <span class="dotted">{{$index + 1}}. {{ item[0] }}</span><span class="dotted">${{item[1]}}</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="financeTotal">
+                            <li id="financeTotals" ><span>Total</span><span>${{ financeTotals }}</span</li>
+                        </ul>
+                    </div>
+                    <!-- <div v-show="modalShow == 'journal'" style="display: none; background-image: url({{currentJournalEntry.bgImage}});" id="journal"> -->
+                    <div v-show="modalShow == 'journal'" id="journal">
+                        <div style="background-image: url({{{currentJournalEntry.bgImage}}});" class="journalSpacer"></div>
+                        <div class="journalEntryHeaderBlock">
+                            <div class="journalTitle">
+                                <h3>{{ currentJournalEntry.title }}</h3>
+                                <h4><span>&#x1f4c5;</span>{{ currentJournalEntry.date }}</h4>
+                                <h4><span>&#x270e;</span>{{ currentJournalEntry.author }}</h4>
+                            </div>
+                            <div class="journalContent">
+                                {{{currentJournalEntry.content}}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        xXx END_BODY xXx
+    <footer>
+    </footer>
+    <!-- <script type="text/javascript">
+      window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
+      heap.load("");
+    </script> -->
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script type="text/javascript">
+        init();
+    </script>
+    xXx END_SCRIPTS xXx
+    </body>
+</html>

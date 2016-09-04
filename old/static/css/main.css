@@ -1,0 +1,232 @@
+html {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0px;
+}
+
+.grid {
+    max-width: initial;
+}
+
+a {
+    color: #EFEFEF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1,h2,h3,h4,h5,h6 {
+    color: #EFEFEF;
+}
+
+#logo img {
+    height: 85px;
+    margin: 0 auto;
+    display: block;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding-bottom: 1em;
+}
+
+#map {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -100;
+}
+
+.fullopac {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+#sidenav {
+    position: fixed;
+    color: #B9BBAD;
+    background: rgba(0,0,0,0.65);
+    height: 100vh;
+}
+
+#sidenav ul {
+    padding: 0;
+}
+
+#sidenav li {
+    list-style: none;
+}
+
+#sidenav .top {
+    font-size: 14px;
+}
+
+#sidenav .bottom {
+    position: absolute;
+    bottom: 3px;
+    font-size: 10px;
+}
+
+#main_nav {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    margin-right: 5vw;
+    right: 0;
+    position: fixed;
+    color: #B9BBAD;
+    background: rgba(0,0,0,0.65);
+    min-height: 90vh;
+}
+
+#about, #campaigns, #financials {
+    padding: 1em;
+}
+
+.dotted-list {
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+.dotted-list span.dotted:first-child {
+    padding-right: 0.33em;
+    background: #222;
+}
+
+.dotted-list li.dotted:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+    content: " ";
+}
+
+.dotted-list span.dotted + span.dotted {
+    background: #222;
+    float: right;
+    padding-left: 0.33em;
+}
+
+.modal {
+    background: #222 !important;
+}
+
+#financeTotals {
+    content: initial;
+}
+
+ul.financeTotal {
+    max-width: 40em;
+    padding: 0;
+    overflow-x: hidden;
+    list-style: none;
+}
+
+
+ul.financeTotal li:before {
+    float: left;
+    width: 0;
+    white-space: nowrap;
+}
+
+ul.financeTotal span + span {
+    background: #222;
+    float: right;
+    padding-left: 0.33em;
+}
+
+.cancelIcon {
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+    font-size: 36px;
+    float: right;
+    display: inline;
+    position: absolute;
+    right: 0;
+    margin: 0;
+    font-style: normal !important;
+    opacity: 0.7;
+    background-color: rgba(0,0,0,0.65);
+}
+
+.cancelIcon:hover {
+    opacity:1.0;
+}
+
+.cancelIcon:hover, .cancelIcon i:hover {
+    cursor: pointer;
+}
+
+
+.cancelIconScrollable {
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+    font-size: 36px;
+    float: right;
+    display: inline;
+    position: absolute;
+    right: 0.5em;
+    margin: 0;
+    font-style: normal !important;
+    opacity: 0.7;
+    background-color: rgba(0,0,0,0.65);
+}
+
+.cancelIconScrollable:hover {
+    opacity:1.0;
+}
+
+.cancelIconScrollable:hover, .cancelIconScrollable i:hover {
+    cursor: pointer;
+}
+
+span.currentCampaign {
+    font-size: 12px;
+    margin-left: 1em;
+}
+#journal, #financials {
+    /* padding: 0.5em; */
+    height: 90vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+.journalSpacer {
+    height: 45vh;
+    background-size: cover;
+    background-position: center;
+}
+.journalEntryHeaderBlock {
+    padding: 0.5em;
+    padding: 1.5em 3em;
+    /* border-radius: 3px 3px;
+    background-color: rgba(0,0,0,0.65); */
+}
+.journalTitle {
+    border-bottom: solid 1px #B9BBAD;
+    padding-bottom: 0.5em;
+    font-size: 24px;
+}
+
+.journalEntryHeaderBlock h3 {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+.journalEntryHeaderBlock h4 {
+    /* padding-left: 2em; */
+    padding-top: 0;
+    padding-bottom: 0;
+    margin: 0;
+    font-size: 12px;
+    color: #B9BBAD;
+}
+.journalContent {
+    font-size: 18px;
+}
+.journalContent a {
+    color: #fa2a00;
+}

@@ -1,0 +1,30 @@
+/* INDEX */
+.no_float_on_small {
+    float: none;
+}
+#curl2sudo {
+    display: none;
+}
+#fading .right_text {
+    text-align: left;
+}
+#logo_col {
+    display: none;
+}
+.mobile_hide {
+    display: none;
+}
+.mobile_show {
+    display: inline;
+}
+#right_side_nav {
+    text-align: left;
+}
+#right_side_nav ul {
+    padding-left: 0px;
+}
+#right_side_nav li {
+    float: none;
+    margin-left: 0em;
+    margin-right: 0.5em;
+}
