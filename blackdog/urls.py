@@ -16,9 +16,11 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from home.views import home
+from home.views import home, blog, campaigns
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^blog.json$', blog),
+    url(r'^campaigns.json$', campaigns),
     url(r'^$', home),
 ]
