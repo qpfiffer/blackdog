@@ -3,3 +3,4 @@ psycopg2==2.6.1
 requests==2.10.0
 django-extensions
 djangorestframework
+django-address==0.1.5
