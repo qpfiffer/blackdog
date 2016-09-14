@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'rest_framework',
-    'address'
+    'address',
+    'taggit',
+    'andablog',
+    'markitup'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -134,3 +137,5 @@ REST_FRAMEWORK = {
     'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
+MARKITUP_SET = 'markitup/sets/markdown/'

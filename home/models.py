@@ -22,5 +22,3 @@ class Contact(models.Model):
     phone_number = models.CharField(max_length=128, null=True, blank=True)
     address = AddressField(null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
-
-# BLOG STUFF

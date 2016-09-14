@@ -4,3 +4,4 @@ requests==2.10.0
 django-extensions
 djangorestframework
 django-address==0.1.5
+django-andablog==2.1.1

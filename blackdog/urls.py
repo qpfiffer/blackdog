@@ -18,11 +18,12 @@ from django.contrib import admin
 
 from rest_framework import routers, viewsets
 
-from home.views import home, UserSerializer, UserViewSet
+from home.views import home, UserViewSet, BlogViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
+router.register(r'blog', BlogViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
