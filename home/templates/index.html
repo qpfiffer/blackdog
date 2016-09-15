@@ -68,12 +68,12 @@
                         </ul>
                     </div>
                     <div v-show="modalShow == 'journal'" id="journal">
-                        <div style="background-image: url({{{currentJournalEntry.bgImage}}});" class="journalSpacer"></div>
+                        <div style="background-image: url({{currentJournalEntry.entryimage_set[0].image}});" class="journalSpacer"></div>
                         <div class="journalEntryHeaderBlock">
                             <div class="journalTitle">
                                 <h3>{{ currentJournalEntry.title }}</h3>
-                                <h4><span>&#x1f4c5;</span>{{ currentJournalEntry.date }}</h4>
-                                <h4><span>&#x270e;</span>{{ currentJournalEntry.author }}</h4>
+                                <h4><span>&#x1f4c5;</span>{{ currentJournalEntry.published_timestamp }}</h4>
+                                <h4><span>&#x270e;</span>{{ currentJournalEntry.author.username }}</h4>
                             </div>
                             <div class="journalContent">
                                 {{{currentJournalEntry.content}}}

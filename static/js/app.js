@@ -135,7 +135,7 @@ function create_app() {
         },
         ready() {
             this.$http.get('/api/blog').then((response) => {
-                this.journalEntries = response;
+                this.journalEntries = response.data;
                 this.currentJournalEntry = null;
                 this.changeJournalEntry(0);
             }, (response) => {
