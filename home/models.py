@@ -27,6 +27,17 @@ class PointOfInterest(models.Model):
     lat = models.DecimalField(max_digits=9, decimal_places=6)
     lng = models.DecimalField(max_digits=9, decimal_places=6)
 
+# FINANCIALS
+class FinancialCategory(models.Model):
+    user = models.ForeignKey(User)
+    name = models.CharField(max_length=128, unique=True, null=False, blank=False)
+
+class FinancialEntry(models.Model):
+    user = models.ForeignKey(User)
+    campaign = models.ForeignKey(Campaign, null=True, blank=True)
+    category = models.ForeignKey(FinancialCategory)
+    value = models.DecimalField(max_digits=12, decimal_places=2)
+
 # MISC. STUFF
 class Contact(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)

@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'taggit',
     'andablog',
     'django_extensions',
+    'social.apps.django_app.default',
     'markitup'
 ]
 
@@ -65,6 +66,10 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [PROJECT_PATH + '/templates/'],
         'APP_DIRS': True,
+        'TEMPLATE_CONTEXT_PROCESSORS': (
+            'social.apps.django_app.context_processors.backends',
+            'social.apps.django_app.context_processors.login_redirect',
+        ),
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
