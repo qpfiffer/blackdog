@@ -16,16 +16,18 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
 
 # BLOG STUFF
-class BlogSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Entry
-        fields = ('title', 'slug', 'content', 'published_timestamp', 'author', 'entryimage_set')
-        depth = 1
-
 class BlogImageSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = EntryImage
         fields = ('entry', 'image', 'image_url')
+
+class BlogSerializer(serializers.HyperlinkedModelSerializer):
+    entryimage_set = BlogImageSerializer(many=True, read_only=True)
+    author = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Entry
+        fields = ('title', 'slug', 'content', 'published_timestamp', 'author', 'entryimage_set')
 
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Entry.objects.filter(is_published=True)
