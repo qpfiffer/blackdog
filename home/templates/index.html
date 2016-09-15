@@ -9,8 +9,10 @@
         <link rel="stylesheet" media="all" href="{% static "css/simplegrid.css" %}"/>
         <link rel="stylesheet" media="all" href="{% static "css/main.css" %}"/>
         <link rel="stylesheet" media="(max-width: 800px)" href="{% static "css/mobile.css" %}"/>
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
         <script src="https://cdn.jsdelivr.net/vue.resource/0.9.3/vue-resource.min.js"></script>
+
         <link rel="stylesheet" href="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.css" />
         <script src="https://npmcdn.com/leaflet@0.7.7/dist/leaflet.js"></script>
         <script src="{% static "js/gpx.js" %}"></script>
@@ -65,7 +67,6 @@
                             <li id="financeTotals" ><span>Total</span><span>${{ financeTotals }}</span</li>
                         </ul>
                     </div>
-                    <!-- <div v-show="modalShow == 'journal'" style="display: none; background-image: url({{currentJournalEntry.bgImage}});" id="journal"> -->
                     <div v-show="modalShow == 'journal'" id="journal">
                         <div style="background-image: url({{{currentJournalEntry.bgImage}}});" class="journalSpacer"></div>
                         <div class="journalEntryHeaderBlock">

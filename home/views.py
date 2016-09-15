@@ -19,11 +19,22 @@ class UserViewSet(viewsets.ModelViewSet):
 class BlogSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Entry
-        fields = ('title', 'slug', 'content', 'published_timestamp', 'author')
+        fields = ('title', 'slug', 'content', 'published_timestamp', 'author', 'entryimage_set')
+        depth = 1
+
+class BlogImageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = EntryImage
+        fields = ('entry', 'image', 'image_url')
 
 class BlogViewSet(viewsets.ModelViewSet):
     queryset = Entry.objects.filter(is_published=True)
     serializer_class = BlogSerializer
+
+class BlogImageViewSet(viewsets.ModelViewSet):
+    queryset = EntryImage.objects.filter(entry__is_published=True)
+    serializer_class = BlogImageSerializer
+
 
 def home(req):
     return render(req, "index.html", locals())

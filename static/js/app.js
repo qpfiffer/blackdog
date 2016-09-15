@@ -110,13 +110,7 @@ function create_app() {
         data: allData,
         methods: {
             changeJournalEntry: function(idx) {
-                app.currentJournalEntry = null;
-                this.$http.get(app.journalEntries[idx].dataLink).then((response) => {
-                    var parsed = JSON.parse(response.body);
-                    app.currentJournalEntry = parsed;
-                }, (response) => {
-                    // NOPE
-                });
+                app.currentJournalEntry = app.journalEntries[idx];
             },
             changeCampaign: function(idx) {
                 app.currentCampaign = app.campaigns[idx];
@@ -140,16 +134,15 @@ function create_app() {
             }
         },
         ready() {
-            this.$http.get('/blog.json').then((response) => {
-                var parsed = JSON.parse(response.body);
-                this.journalEntries = parsed;
+            this.$http.get('/api/blog').then((response) => {
+                this.journalEntries = response;
                 this.currentJournalEntry = null;
                 this.changeJournalEntry(0);
             }, (response) => {
                 // Nope.
             });
 
-            this.$http.get('/campaigns.json').then((response) => {
+            this.$http.get('/api/campaigns').then((response) => {
                 var parsed = JSON.parse(response.body);
                 this.campaigns = parsed;
                 this.currentCampaign = parsed[0];

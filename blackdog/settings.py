@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'address',
     'taggit',
     'andablog',
+    'django_extensions',
     'markitup'
 ]
 
@@ -139,3 +140,4 @@ REST_FRAMEWORK = {
 }
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
 MARKITUP_SET = 'markitup/sets/markdown/'
+SHELL_PLUS = 'ipython'
