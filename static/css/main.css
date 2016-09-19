@@ -17,6 +17,7 @@ a {
 
 a:hover {
     text-decoration: underline;
+    cursor: pointer;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -229,4 +230,50 @@ span.currentCampaign {
 }
 .journalContent a {
     color: #fa2a00;
+}
+.function_modal {
+    color: #EEE;
+    padding-left: 0.35em;
+    padding-right: 0.35em;
+    float: right;
+    display: inline;
+    position: absolute;
+    right: 0;
+    margin: 0;
+    font-style: normal !important;
+    opacity: 0.7;
+    background-color: rgba(0,0,0,0.65);
+}
+.function_modal ul {
+    padding-left: 0.25em;
+}
+.function_modal li {
+    list-style: none;
+}
+.function_modal li:hover {
+    list-style: none;
+}
+.standAloneModal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+}
+.innerModal {
+    color: #B9BBAD;
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    background: #222;
+}
+.innerModalShown {
+    opacity: 1.0;
 }

@@ -20,9 +20,38 @@
     <body>
         <header>
         </header>
-        {% verbatim %}
         <div id="main_container" class="grid">
             <div id="map"></div>
+            <div class="function_modal">
+                <ul class="login_register">
+                    {% if request.user.is_authenticated %}
+                        {% verbatim %}
+                        <li><a v-on:click="changeUploadModalState(true)" href="#uploadModal">Upload</a></li>
+                        {% endverbatim %}
+                    {% else %}
+                        <li>Login</li>
+                        <li>Register</li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div v-show="uploadModalState" id="uploadModal" class="standAloneModal" v-bind:class="{ 'innerModalShown': uploadModalState }">
+                <div class="innerModal">
+                    {% verbatim %}
+                    <p class="cancelIconScrollable" v-on:click="changeUploadModalState(false)">&#xd7;</p>
+                    {% endverbatim %}
+                    <h2>Hello!</h2>
+                    <p>Upload a new course or ride here.</p>
+                    <form action="/campaignUpload" method="POST" enctype="multipart/form-data">
+                        <ul>
+                            <li>Campaign select</li>
+                            <li>Course upload</li>
+                            <li>Ride Upload</li>
+                            <input type="submit" />
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            {% verbatim %}
             <div id="sidenav" class="col-2-12">
                 <div class="content">
                     <div class="fullopac">

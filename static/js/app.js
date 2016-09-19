@@ -5,6 +5,7 @@ var journalEntries = null;
 
 var allData = {
     message: "TEST!",
+    uploadModalState: false,
     modalShow: null,
     showMetaPins: false,
     financials: {
@@ -120,6 +121,9 @@ function create_app() {
             },
             setCurrentModal: function(name) {
                 app.modalShow = name;
+            },
+            changeUploadModalState: function(state) {
+                app.uploadModalState = state;
             },
         },
         computed: {
