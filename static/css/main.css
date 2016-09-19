@@ -19,7 +19,9 @@ a:hover {
     text-decoration: underline;
     cursor: pointer;
 }
-
+ul {
+    list-style: none;
+}
 h1,h2,h3,h4,h5,h6 {
     color: #EFEFEF;
 }
@@ -277,3 +279,24 @@ span.currentCampaign {
 .innerModalShown {
     opacity: 1.0;
 }
+#uploadModal li {
+    padding-top: 0.5em;
+}
+#uploadModal input {
+    margin-top: 0.5em;
+}
+.button {
+    padding: 0.5em;
+    color: #B9BBAD;
+    background-color: #333;
+    display: inline-block;
+    font-size: 24px;
+
+    appearance: none;
+    box-shadow: none;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+

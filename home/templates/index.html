@@ -39,14 +39,13 @@
                     {% verbatim %}
                     <p class="cancelIconScrollable" v-on:click="changeUploadModalState(false)">&#xd7;</p>
                     {% endverbatim %}
-                    <h2>Hello!</h2>
                     <p>Upload a new course or ride here.</p>
                     <form action="/campaignUpload" method="POST" enctype="multipart/form-data">
                         <ul>
                             <li>Campaign select</li>
-                            <li>Course upload</li>
-                            <li>Ride Upload</li>
-                            <input type="submit" />
+                            <li>Select Courses: <input type="file" name="filefield" multiple="multiple"/></li>
+                            <li>Select Rides: <input type="file" name="filefield" multiple="multiple"/></li>
+                            <input class="button" type="submit" />
                         </ul>
                     </form>
                 </div>
