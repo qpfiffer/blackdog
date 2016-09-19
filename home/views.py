@@ -45,5 +45,12 @@ def home(req):
     return render(req, "index.html", locals())
 
 def campaignUpload(req):
-    messages.info(req, 'Success!')
+    if req.method == 'POST':
+        for uploaded_file in req.FILES:
+            if not uploaded_file.lower().endswith(".gpx"):
+                messages.error(req, "Could not upload {}: Is not a gpx file.".format(uploaded_file))
+                continue
+            import ipdb; ipdb.set_trace()
+            "asdf"
+        messages.info(req, 'Success!')
     return redirect('home')

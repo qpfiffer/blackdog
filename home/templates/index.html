@@ -43,8 +43,8 @@
                     <form action="{% url "campaignUpload" %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                         <ul>
                             <li>Campaign select</li>
-                            <li>Select Courses: <input type="file" name="filefield" multiple="multiple"/></li>
-                            <li>Select Rides: <input type="file" name="filefield" multiple="multiple"/></li>
+                            <li>Select Courses: <input type="file" name="coursefiles" multiple="multiple"/></li>
+                            <li>Select Rides: <input type="file" name="ridefiles" multiple="multiple"/></li>
                             <input class="button" type="submit" />
                         </ul>
                     </form>
