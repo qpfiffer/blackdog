@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 from rest_framework import routers, viewsets
 
-from home.views import home, UserViewSet, BlogViewSet, BlogImageViewSet
+from home.views import home, campaignUpload, UserViewSet, BlogViewSet, BlogImageViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -30,7 +30,8 @@ router.register(r'blog_images', BlogImageViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', home),
+    url(r'^$', home, name='home'),
+    url(r'^campaignUpload$', campaignUpload, name="campaignUpload"),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url('', include('social.apps.django_app.urls', namespace='social'))

@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 from rest_framework import serializers, viewsets
 from andablog.models import Entry, EntryImage
+import json
 
 # Why is everything in here? Whatever.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -39,4 +41,9 @@ class BlogImageViewSet(viewsets.ModelViewSet):
 
 
 def home(req):
+    all_messages = json.dumps([x.message for x in messages.get_messages(req)])
     return render(req, "index.html", locals())
+
+def campaignUpload(req):
+    messages.info(req, 'Success!')
+    return redirect('home')

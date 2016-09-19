@@ -40,7 +40,7 @@
                     <p class="cancelIconScrollable" v-on:click="changeUploadModalState(false)">&#xd7;</p>
                     {% endverbatim %}
                     <p>Upload a new course or ride here.</p>
-                    <form action="/campaignUpload" method="POST" enctype="multipart/form-data">
+                    <form action="{% url "campaignUpload" %}" method="POST" enctype="multipart/form-data">{% csrf_token %}
                         <ul>
                             <li>Campaign select</li>
                             <li>Select Courses: <input type="file" name="filefield" multiple="multiple"/></li>
@@ -118,9 +118,17 @@
       window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
       heap.load("");
     </script> -->
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static "js/notify.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/app.js" %}"></script>
     <script type="text/javascript">
-        init();
+        $(function() {
+            var messages = {{all_messages|safe}};
+            for (var message of messages) {
+                $.notify(message, "info");
+            }
+            init();
+        });
     </script>
     </body>
 </html>
