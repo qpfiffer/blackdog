@@ -6,6 +6,7 @@ from django.contrib import messages
 from rest_framework import serializers, viewsets
 from andablog.models import Entry, EntryImage
 from home.forms import UploadCampaignForm
+from home.models import Campaign, Course, Ride
 import json
 
 # Why is everything in here? Whatever.
@@ -51,14 +52,14 @@ def campaignUpload(req):
         return redirect('home')
 
     if req.method == 'POST':
-        import ipdb; ipdb.set_trace()
-        "asdf"
         form = UploadCampaignForm(req.user, req.POST, req.FILES)
         if form.is_valid():
             for ride in req.FILES.getlist('rides'):
-                # DO RIDES
+                new_ride = Ride.objects.create(campaign = form.cleaned_data['campaign'],
+                                               trackfile = ride)
             for course in req.FILES.getlist('courses'):
-                # DO COURSES
+                new_course = Course.objects.create(campaign = form.cleaned_data['campaign'],
+                                                   trackfile = course)
             messages.info(req, 'Success!')
         else:
             [messages.info(req, 'Failure: {}: {}'.format(x, form.errors[x].as_text())) for x in form.errors]

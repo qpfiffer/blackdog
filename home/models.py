@@ -21,10 +21,16 @@ class Ride(models.Model):
     campaign = models.ForeignKey(Campaign)
     trackfile = models.FileField(upload_to='rides')
 
+    def __unicode__(self):
+        return self.trackfile.name
+
 class Course(models.Model):
     uploaded = models.DateTimeField(auto_now=True)
     campaign = models.ForeignKey(Campaign)
     trackfile = models.FileField(upload_to='courses')
+
+    def __unicode__(self):
+        return self.trackfile.name
 
 class PointOfInterest(models.Model):
     entry = models.ForeignKey(Entry, null=False, blank=False)
