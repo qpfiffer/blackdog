@@ -41,6 +41,36 @@ class BlogImageViewSet(viewsets.ModelViewSet):
     queryset = EntryImage.objects.filter(entry__is_published=True)
     serializer_class = BlogImageSerializer
 
+# CAMPAIGNS
+class CourseSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Course
+        fields = ('uploaded', 'campaign', 'trackfile')
+
+class CourseViewSet(viewsets.ModelViewSet):
+    queryset = Course.objects.filter()
+    serializer_class = CourseSerializer
+
+class RideSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Ride
+        fields = ('uploaded', 'campaign', 'trackfile')
+
+class RideViewSet(viewsets.ModelViewSet):
+    queryset = Ride.objects.filter()
+    serializer_class = RideSerializer
+
+class CampaignSerializer(serializers.HyperlinkedModelSerializer):
+    owner = UserSerializer(read_only=True)
+
+    class Meta:
+        model = Campaign
+        depth = 1
+        fields = ('owner', 'created_at', 'name', 'about', 'ride_set', 'course_set')
+
+class CampaignViewSet(viewsets.ModelViewSet):
+    queryset = Campaign.objects.filter()
+    serializer_class = CampaignSerializer
 
 def home(req):
     upload_form = UploadCampaignForm(req.user)
@@ -55,11 +85,17 @@ def campaignUpload(req):
         form = UploadCampaignForm(req.user, req.POST, req.FILES)
         if form.is_valid():
             for ride in req.FILES.getlist('rides'):
+                if not ride.name.lower().endswith(".gpx"):
+                    messages.info(req, 'Could not upload {}: Does not end in GPX.'.format(ride.name))
+                    continue
                 new_ride = Ride.objects.create(campaign = form.cleaned_data['campaign'],
                                                trackfile = ride)
             for course in req.FILES.getlist('courses'):
                 new_course = Course.objects.create(campaign = form.cleaned_data['campaign'],
                                                    trackfile = course)
+                if not course.name.lower().endswith(".gpx"):
+                    messages.info(req, 'Could not upload {}: Does not end in GPX.'.format(course.name))
+                    continue
             messages.info(req, 'Success!')
         else:
             [messages.info(req, 'Failure: {}: {}'.format(x, form.errors[x].as_text())) for x in form.errors]

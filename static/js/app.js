@@ -92,15 +92,14 @@ function erase_map() {
 }
 
 function fill_map(rides, courses, showMetaPins) {
-    for (var idx in rides) {
-        var ride = rides[idx];
-        var gpx = '/data/rides/' + ride + '.gpx';
+    debugger;
+    for (var ride of rides) {
+        var gpx = ride.trackfile;
         _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins);
     }
 
-    for (var idx in courses) {
-        var course = courses[idx];
-        var gpx = '/data/courses/' + course + '.gpx';
+    for (var course of courses) {
+        var gpx = course.trackfile;
         _add_gpx(map, gpx, "#000", 0.6, showMetaPins);
     }
 }
@@ -116,7 +115,7 @@ function create_app() {
             changeCampaign: function(idx) {
                 app.currentCampaign = app.campaigns[idx];
                 erase_map();
-                fill_map(app.currentCampaign["rides"], app.currentCampaign["courses"], app.showMetaPins);
+                fill_map(app.currentCampaign["ride_set"], app.currentCampaign["course_set"], app.showMetaPins);
 
             },
             setCurrentModal: function(name) {
@@ -147,10 +146,9 @@ function create_app() {
             });
 
             this.$http.get('/api/campaigns').then((response) => {
-                var parsed = JSON.parse(response.body);
-                this.campaigns = parsed;
-                this.currentCampaign = parsed[0];
-                this.changeCampaign(3);
+                this.campaigns = response.data;
+                this.currentCampaign = this.campaigns[0];
+                this.changeCampaign(0);
             }, (response) => {
                 // Nope.
             });
