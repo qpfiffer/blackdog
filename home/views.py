@@ -5,6 +5,7 @@ from django.contrib import messages
 
 from rest_framework import serializers, viewsets
 from andablog.models import Entry, EntryImage
+from home.forms import UploadCampaignForm
 import json
 
 # Why is everything in here? Whatever.
@@ -41,16 +42,24 @@ class BlogImageViewSet(viewsets.ModelViewSet):
 
 
 def home(req):
+    upload_form = UploadCampaignForm(req.user)
     all_messages = json.dumps([x.message for x in messages.get_messages(req)])
     return render(req, "index.html", locals())
 
 def campaignUpload(req):
+    if not req.user.is_authenticated:
+        return redirect('home')
+
     if req.method == 'POST':
-        for uploaded_file in req.FILES:
-            if not uploaded_file.lower().endswith(".gpx"):
-                messages.error(req, "Could not upload {}: Is not a gpx file.".format(uploaded_file))
-                continue
-            import ipdb; ipdb.set_trace()
-            "asdf"
-        messages.info(req, 'Success!')
+        import ipdb; ipdb.set_trace()
+        "asdf"
+        form = UploadCampaignForm(req.user, req.POST, req.FILES)
+        if form.is_valid():
+            for ride in req.FILES.getlist('rides'):
+                # DO RIDES
+            for course in req.FILES.getlist('courses'):
+                # DO COURSES
+            messages.info(req, 'Success!')
+        else:
+            [messages.info(req, 'Failure: {}: {}'.format(x, form.errors[x].as_text())) for x in form.errors]
     return redirect('home')

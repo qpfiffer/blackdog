@@ -9,7 +9,12 @@ from andablog.models import Entry
 # RIDE STUFF
 class Campaign(models.Model):
     created_at = models.DateTimeField(auto_now=True)
+    owner = models.ForeignKey(User, blank=True, null=True)
     name = models.CharField(max_length=128, blank=False, null=False)
+    about = models.TextField(blank=True, null=True)
+
+    def __unicode__(self):
+        return self.name
 
 class Ride(models.Model):
     uploaded = models.DateTimeField(auto_now=True)
