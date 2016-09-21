@@ -8,3 +8,4 @@ django-andablog==2.1.1
 python-social-auth==0.2.21
 markdown
 python-openid
+dj-database-url==0.4.1

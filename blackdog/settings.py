@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
+import dj_database_url
 import os
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
@@ -91,6 +92,9 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+# I don't man, whatever
+if len(dj_database_url.config()) > 0:
+    DATABASES['default'] =  dj_database_url.config()
 
 
 # Password validation
