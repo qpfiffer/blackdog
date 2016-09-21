@@ -11,3 +11,5 @@ python-openid
 dj-database-url==0.4.1
 whitenoise==3.2.1
 gunicorn==19.6.0
+django-storages==1.5.1
+boto==2.42.0

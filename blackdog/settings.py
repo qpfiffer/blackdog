@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import dj_database_url
-import os
+import os, sys
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'andablog',
     'django_extensions',
     'social.apps.django_app.default',
-    'markitup'
+    'markitup',
+    'storages'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -151,4 +152,12 @@ REST_FRAMEWORK = {
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
 MARKITUP_SET = 'markitup/sets/markdown/'
 SHELL_PLUS = 'ipython'
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
+AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME='blackdog-dev'
+if 'manage' not in sys.argv[0]:
+    AWS_STORAGE_BUCKET_NAME='blackdog-production'
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
