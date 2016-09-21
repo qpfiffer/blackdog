@@ -10,3 +10,4 @@ markdown
 python-openid
 dj-database-url==0.4.1
 whitenoise==3.2.1
+gunicorn==19.6.0
