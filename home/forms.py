@@ -8,4 +8,7 @@ class UploadCampaignForm(forms.Form):
 
     def __init__(self, user, *args, **kwargs):
         super(UploadCampaignForm, self).__init__(*args, **kwargs)
-        self.fields['campaign'].queryset = Campaign.objects.filter(owner=user)
+        if user.is_authenticated:
+            self.fields['campaign'].queryset = Campaign.objects.filter(owner=user)
+        else:
+            self.fields['campaign'].queryset = Campaign.objects.none()
