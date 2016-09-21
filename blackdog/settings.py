@@ -149,3 +149,4 @@ REST_FRAMEWORK = {
 MARKITUP_FILTER = ('markdown.markdown', {'safe_mode': False})
 MARKITUP_SET = 'markitup/sets/markdown/'
 SHELL_PLUS = 'ipython'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
