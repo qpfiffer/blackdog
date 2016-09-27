@@ -147,8 +147,9 @@ function create_app() {
 
             this.$http.get('/api/campaigns').then((response) => {
                 this.campaigns = response.data;
-                this.currentCampaign = this.campaigns[0];
-                this.changeCampaign(0);
+                var randomCampaignIDX = Math.floor(Math.random() * this.campaigns.length);
+                this.currentCampaign = this.campaigns[randomCampaignIDX];
+                this.changeCampaign(randomCampaignIDX);
             }, (response) => {
                 // Nope.
             });
