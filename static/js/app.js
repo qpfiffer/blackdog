@@ -43,7 +43,6 @@ var allData = {
     campaigns: null,
     currentCampaign: null,
     journalEntries: null,
-    currentJournalEntry: null
 }
 
 function _add_gpx(map, url, color, opacity, showMetaPins) {
@@ -109,9 +108,6 @@ function create_app() {
         el: "#main_container",
         data: allData,
         methods: {
-            changeJournalEntry: function(idx) {
-                app.currentJournalEntry = app.journalEntries[idx];
-            },
             changeCampaign: function(idx) {
                 app.currentCampaign = app.campaigns[idx];
                 erase_map();
@@ -140,7 +136,6 @@ function create_app() {
             this.$http.get('/api/blog').then((response) => {
                 this.journalEntries = response.data;
                 this.currentJournalEntry = null;
-                this.changeJournalEntry(0);
             }, (response) => {
                 // Nope.
             });
