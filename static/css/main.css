@@ -87,6 +87,9 @@ h1,h2,h3,h4,h5,h6 {
 
 #campaigns, #financials {
     padding: 1em;
+    height: 90vh;
+    width: 100%;
+    overflow-y: scroll;
 }
 
 .dotted-list {
