@@ -91,7 +91,6 @@ function erase_map() {
 }
 
 function fill_map(rides, courses, showMetaPins) {
-    debugger;
     for (var ride of rides) {
         var gpx = ride.trackfile;
         _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins);
