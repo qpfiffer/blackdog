@@ -28,9 +28,6 @@
                         {% verbatim %}
                         <li><a v-on:click="changeUploadModalState(true)" href="#uploadModal">Upload</a></li>
                         {% endverbatim %}
-                    {% else %}
-                        <li>Login</li>
-                        <li>Register</li>
                     {% endif %}
                 </ul>
             </div>
@@ -59,7 +56,7 @@
                             <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
                             <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
                             <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li>
-                            <li><a v-on:click="setCurrentModal('financials')" href="#">Financials</a></li>
+                            <li><a v-on:click="setCurrentModal('manifest')" href="#">Manifest</a></li>
                             <li><a v-on:click="setCurrentModal('journal')" href="#">Journal:</a></li>
                             <li v-for="currentJournalEntry in journalEntries.slice(0, 4)" v-on:click="setCurrentModal('journal')"><span class="currentCampaign"><a href="#{{currentJournalEntry.slug}}">{{currentJournalEntry.title}}</span></li>
                         </ul>
@@ -72,7 +69,7 @@
             </div>
             <div v-show="modalShow" id="main_nav" v-bind:class="{ 'col-6-12': modalShow != 'journal', 'col-9-12': modalShow == 'journal' }" class="modal">
                 <div class="content">
-                    <p class="cancelIconScrollable" v-if="modalShow =='journal' || modalShow == 'financials'" v-on:click="modalShow = false">&#xd7;</p>
+                    <p class="cancelIconScrollable" v-if="modalShow =='journal' || modalShow == 'manifest'" v-on:click="modalShow = false">&#xd7;</p>
                     <p class="cancelIcon" v-else v-on:click="modalShow = false">&#xd7;</p>
                     <div v-show="modalShow == 'about'" id="about">
                         <h3 style="padding: 1em;">About</h3>
@@ -92,10 +89,10 @@
                     <div v-show="modalShow == 'campaigns'" id="campaigns">
                         <h3>Campaigns</h3>
                     </div>
-                    <div v-show="modalShow == 'financials'" id="financials">
-                        <h3>Financials</h3>
-                        <ul class="dotted-list">
-                            <li v-for="(key, financeCategory) in financials">
+                    <div v-show="modalShow == 'manifest'" id="manifest">
+                        <h3>Manifest</h3>
+                        <!-- <ul class="dotted-list">
+                            <li v-for="(key, financeCategory) in manifest">
                                 <h4>{{key}}</h4>
                                 <ul class="dotted-list">
                                     <li class="dotted" v-for="item in financeCategory">
@@ -106,7 +103,7 @@
                         </ul>
                         <ul class="financeTotal">
                             <li id="financeTotals" ><span>Total</span><span>${{ financeTotals }}</span</li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <div v-show="modalShow == 'journal'" id="journal">
                         <div v-for="currentJournalEntry in journalEntries">

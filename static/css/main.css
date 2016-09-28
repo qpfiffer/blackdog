@@ -85,7 +85,7 @@ h1,h2,h3,h4,h5,h6 {
     min-height: 90vh;
 }
 
-#campaigns, #financials {
+#campaigns, #manifest {
     padding: 1em;
 }
 
@@ -191,7 +191,7 @@ span.currentCampaign {
     font-size: 12px;
     margin-left: 1em;
 }
-#journal, #financials {
+#journal, #manifest {
     /* padding: 0.5em; */
     height: 90vh;
     width: 100%;
