@@ -139,6 +139,23 @@ function create_app() {
             this.$http.get('/api/blog').then((response) => {
                 this.journalEntries = response.data;
                 this.currentJournalEntry = null;
+                var self = this;
+
+                Vue.nextTick(function() {
+                    if (window.location.hash != null) {
+                        for (var entry of $(".journalEntry")) {
+                            if (window.location.hash == "#" + $(entry).attr("id")) {
+                                self.setCurrentModal('journal');
+                                Vue.nextTick(function() {
+                                    $(entry)[0].scrollIntoView({
+                                        behavior: "smooth", // or "auto" or "instant"
+                                        block: "start" // or "end"
+                                    });
+                                });
+                            }
+                        }
+                    }
+                });
             }, (response) => {
                 // Nope.
             });
