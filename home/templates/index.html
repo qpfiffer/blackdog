@@ -54,8 +54,8 @@
                         <ul class="top">
                             <li><h2 id="logo" ><img src="/static/img/logo.svg"></img></h2></li>
                             <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
-                            <li><a v-on:click="setCurrentModal('campaigns')" href="#">Campaigns</a></li>
-                            <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li>
+                            <li><a v-on:click="setCurrentModal('campaigns')" href="#">The Campaign</a></li>
+                            <!-- <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li> -->
                             <li><a v-on:click="setCurrentModal('manifest')" href="#">Manifest</a></li>
                             <li><a v-on:click="setCurrentModal('journal')" href="#">Journal:</a></li>
                             <li v-for="currentJournalEntry in journalEntries.slice(0, 4)" v-on:click="setCurrentModal('journal')"><span class="currentCampaign"><a href="#{{currentJournalEntry.slug}}">{{currentJournalEntry.title}}</span></li>
@@ -86,7 +86,12 @@
                         <img src="/static/img/SurveyIGofK.jpg"></img>
                     </div>
                     <div v-show="modalShow == 'campaigns'" id="campaigns">
-                        <h3>Campaigns</h3>
+                        <h3>The Campaign</h3>
+                        <p>The Black Dog project is centered around a single tour, for now. We wanted to turn it into a <i>thing</i>, so we made this site to go with everything about it. The ride itself will be documented here with the use of journal entries, pictures and GPS data about the ride.</p>
+                        <p>A campaign, as we've taken to calling this, consists of rides and courses. They're very similar, they're both just GPS tracks. The only difference is one shows intent, and the other shows what we actually did.</p>
+                        <p>A <b>course</b> is an intended segment of the ride. We want to ride here and we think we probably will, unless something goes wrong.</p>
+                        <p>A <b>ride</b> is uploaded after the fact. This is where we actually rode. It might mirror a course we uploaded, but it might not.</p>
+                        <p>Eventually, this campaign will also have journal entries tied to points on the map, or instagram images associated with things that happened or weird stuff that we saw.</p>
                     </div>
                     <div v-show="modalShow == 'manifest'" id="manifest">
                         <h3>Manifest</h3>
