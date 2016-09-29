@@ -7,7 +7,7 @@ var allData = {
     message: "TEST!",
     uploadModalState: false,
     modalShow: null,
-    showMetaPins: true,
+    showMetaPins: false,
     financials: {
         "Navigation": [
             ["Garmin Edge 20", "60.00"],
