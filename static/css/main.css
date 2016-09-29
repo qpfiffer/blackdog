@@ -307,11 +307,11 @@ span.currentCampaign {
     width: 100%;
     overflow-y: scroll;
 }
-#about img {
+#about img, #campaigns img {
     object-fit: cover;
     width: 100%;
 }
-#about p {
+#about p, #campaigns p {
     padding-left: 1em;
     padding-right: 1em;
 }
@@ -319,5 +319,5 @@ span.currentCampaign {
     color: #FA2A00;
 }
 .black {
-    color: #000;
+    color: #666;
 }
