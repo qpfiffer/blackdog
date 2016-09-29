@@ -27,6 +27,7 @@
                     {% if request.user.is_authenticated %}
                         {% verbatim %}
                         <li><a v-on:click="changeUploadModalState(true)" href="#uploadModal">Upload</a></li>
+                        <li><a v-on:click="changeInstagramModalState(true)" href="#instagramModal">Add Instagram POI</a></li>
                         {% endverbatim %}
                     {% endif %}
                 </ul>
@@ -44,6 +45,23 @@
                             <li>Rides: {{ upload_form.rides }}</li>
                             <input class="button" type="submit" />
                         </ul>
+                    </form>
+                </div>
+            </div>
+            <div v-show="instagramModalState" id="instagramModal" class="standAloneModal" v-bind:class="{ 'innerModalShown': instagramModalState }">
+                <div class="innerModal">
+                    {% verbatim %}
+                    <p class="cancelIconScrollable" v-on:click="changeInstagramModalState(false)">&#xd7;</p>
+                    {% endverbatim %}
+                    <p>Add a new point of interest from instagram here.</p>
+                    <form action="#" method="post" class="form-horizontal" role="form">{% csrf_token %}
+                        <label>Username:</label>
+                        <input type="text" name="username" />
+
+                        <input class="form-control" id="access_token" name="access_token" type="hidden" value="{{ INSTAGRAM_OAUTH_TOKEN }}">
+                        <input class="form-control" id="access_token_secret" name="access_token_secret" type="hidden" value="{{ INSTAGRAM_OAAUTH_SECRET }}">
+
+                        <input class="button" type="submit" />
                     </form>
                 </div>
             </div>
@@ -132,10 +150,6 @@
         {% endverbatim %}
     <footer>
     </footer>
-    <!-- <script type="text/javascript">
-      window.heap=window.heap||[],heap.load=function(t,e){window.heap.appid=t,window.heap.config=e;var a=document.createElement("script");a.type="text/javascript",a.async=!0,a.src=("https:"===document.location.protocol?"https:":"http:")+"//cdn.heapanalytics.com/js/heap-"+t+".js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(a,n);for(var o=function(t){return function(){heap.push([t].concat(Array.prototype.slice.call(arguments,0)))}},p=["clearEventProperties","identify","setEventProperties","track","unsetEventProperty"],c=0;c<p.length;c++)heap[p[c]]=o(p[c])};
-      heap.load("");
-    </script> -->
     <script src="https://code.jquery.com/jquery-3.1.0.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{% static "js/notify.min.js" %}"></script>
     <script type="text/javascript" src="{% static "js/app.js" %}"></script>
@@ -147,6 +161,15 @@
             }
             init();
         });
+    </script>
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-30510579-5', 'auto');
+        ga('send', 'pageview');
     </script>
     </body>
 </html>

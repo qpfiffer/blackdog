@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from django.contrib.auth.models import User
@@ -5,6 +6,8 @@ from django.contrib import messages
 
 from rest_framework import serializers, viewsets
 from andablog.models import Entry, EntryImage
+from social.backends.utils import load_backends
+
 from home.forms import UploadCampaignForm
 from home.models import Campaign, Course, Ride
 import json
@@ -75,6 +78,7 @@ class CampaignViewSet(viewsets.ModelViewSet):
 def home(req):
     upload_form = UploadCampaignForm(req.user)
     all_messages = json.dumps([x.message for x in messages.get_messages(req)])
+    available_backends = load_backends(['social.backends.instagram.InstagramOAuth2'])
     return render(req, "index.html", locals())
 
 def campaignUpload(req):

@@ -6,6 +6,7 @@ var journalEntries = null;
 var allData = {
     message: "TEST!",
     uploadModalState: false,
+    instagramModalState: false,
     modalShow: null,
     showMetaPins: false,
     financials: {
@@ -118,6 +119,9 @@ function create_app() {
             },
             changeUploadModalState: function(state) {
                 app.uploadModalState = state;
+            },
+            changeInstagramModalState: function(state) {
+                app.instagramModalState = state;
             },
         },
         computed: {
