@@ -315,3 +315,9 @@ span.currentCampaign {
     padding-left: 1em;
     padding-right: 1em;
 }
+.red {
+    color: #FA2A00;
+}
+.black {
+    color: #000;
+}

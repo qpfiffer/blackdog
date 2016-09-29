@@ -7,7 +7,7 @@ var allData = {
     message: "TEST!",
     uploadModalState: false,
     modalShow: null,
-    showMetaPins: false,
+    showMetaPins: true,
     financials: {
         "Navigation": [
             ["Garmin Edge 20", "60.00"],
@@ -71,8 +71,7 @@ function _add_gpx(map, url, color, opacity, showMetaPins) {
         },
         marker_options: !!showMetaPins ? pinsOptions : noPinsOptions,
     }).on('loaded', function(e) {
-        // map.fitBounds(e.target.getBounds());
-        map.fitWorld();
+        map.fitBounds(e.target.getBounds());
     }).addTo(map);
 }
 
