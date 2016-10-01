@@ -25,14 +25,14 @@
         <div id="main_container" class="grid">
             <div id="map"></div>
             <div class="function_modal">
-                <ul class="login_register">
-                    {% if request.user.is_authenticated %}
-                        {% verbatim %}
+                {% if request.user.is_authenticated %}
+                    {% verbatim %}
+                    <ul class="login_register">
                         <li><a v-on:click="changeUploadModalState(true)" href="#uploadModal">Upload</a></li>
                         <li><a v-on:click="changeInstagramModalState(true)" href="#instagramModal">Add Instagram POI</a></li>
-                        {% endverbatim %}
-                    {% endif %}
-                </ul>
+                    </ul>
+                    {% endverbatim %}
+                {% endif %}
             </div>
             <div v-show="uploadModalState" id="uploadModal" class="standAloneModal" v-bind:class="{ 'innerModalShown': uploadModalState }">
                 <div class="innerModal">
@@ -57,12 +57,7 @@
                     {% endverbatim %}
                     <p>Add a new point of interest from instagram here.</p>
                     <form action="#" method="post" class="form-horizontal" role="form">{% csrf_token %}
-                        <label>Username:</label>
-                        <input type="text" name="username" />
-
-                        <input class="form-control" id="access_token" name="access_token" type="hidden" value="{{ INSTAGRAM_OAUTH_TOKEN }}">
-                        <input class="form-control" id="access_token_secret" name="access_token_secret" type="hidden" value="{{ INSTAGRAM_OAAUTH_SECRET }}">
-
+                        <a href="{% url 'social:begin' 'instagram' %}">Login with Instagram</a>
                         <input class="button" type="submit" />
                     </form>
                 </div>

@@ -79,7 +79,12 @@ def home(req):
     upload_form = UploadCampaignForm(req.user)
     all_messages = json.dumps([x.message for x in messages.get_messages(req)])
     available_backends = load_backends(['social.backends.instagram.InstagramOAuth2'])
+
     return render(req, "index.html", locals())
+
+def instagram_redirect(req):
+    messages.info(req, 'Instagram now auth\'d.')
+    return redirect('home')
 
 def campaignUpload(req):
     if not req.user.is_authenticated:

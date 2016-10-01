@@ -158,4 +158,24 @@ AWS_ACCESS_KEY_ID=os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY=os.environ['AWS_SECRET_ACCESS_KEY']
 AWS_STORAGE_BUCKET_NAME=os.environ.get('S3_BUCKET_NAME', 'blackdog-dev')
 
+SOCIAL_AUTH_STORAGE='social.apps.django_app.default.models.DjangoStorage'
+SOCIAL_AUTH_INSTAGRAM_KEY=os.environ['INSTAGRAM_ID']
+SOCIAL_AUTH_INSTAGRAM_SECRET=os.environ['INSTAGRAM_SECRET']
+#SOCIAL_AUTH_LOGIN_REDIRECT_URL='/instagram_redirect/'
+#SOCIAL_AUTH_LOGIN_URL='/instagram_redirect/'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+)
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
+AUTHENTICATION_BACKENDS = (
+    'social.backends.instagram.InstagramOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)

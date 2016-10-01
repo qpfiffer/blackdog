@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 from rest_framework import routers, viewsets
 
 from home.views import home, campaignUpload, UserViewSet, BlogViewSet, BlogImageViewSet,\
-                       RideViewSet, CourseViewSet, CampaignViewSet
+                       RideViewSet, CourseViewSet, CampaignViewSet, instagram_redirect
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -38,5 +38,6 @@ urlpatterns = [
     url(r'^campaignUpload$', campaignUpload, name="campaignUpload"),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^instagram_redirect/', instagram_redirect, name='instagram_redirect'),
     url('', include('social.apps.django_app.urls', namespace='social'))
 ]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
