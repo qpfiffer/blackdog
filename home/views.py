@@ -7,6 +7,7 @@ from django.contrib import messages
 from rest_framework import serializers, viewsets
 from andablog.models import Entry, EntryImage
 from social.backends.utils import load_backends
+from social.apps.django_app.default.models import UserSocialAuth
 
 from home.forms import UploadCampaignForm
 from home.models import Campaign, Course, Ride
@@ -79,6 +80,7 @@ def home(req):
     upload_form = UploadCampaignForm(req.user)
     all_messages = json.dumps([x.message for x in messages.get_messages(req)])
     available_backends = load_backends(['social.backends.instagram.InstagramOAuth2'])
+    instagram_acct = UserSocialAuth.objects.filter(user=req.user, provider='instagram')
 
     return render(req, "index.html", locals())
 

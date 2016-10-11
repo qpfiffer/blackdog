@@ -50,16 +50,18 @@
                     </form>
                 </div>
             </div>
-            <div v-show="instagramModalState" id="instagramModal" class="standAloneModal" v-bind:class="{ 'innerModalShown': instagramModalState }">
+            <div v-show="instagramModalState" id="instagramModal" class="hoverBottomLeftModal" v-bind:class="{ 'innerModalShown': instagramModalState }">
                 <div class="innerModal">
                     {% verbatim %}
                     <p class="cancelIconScrollable" v-on:click="changeInstagramModalState(false)">&#xd7;</p>
                     {% endverbatim %}
-                    <p>Add a new point of interest from instagram here.</p>
-                    <form action="#" method="post" class="form-horizontal" role="form">{% csrf_token %}
+                    <h2>INSTAGRAM</h2>
+                    {% if not instagram_acct %}
                         <a href="{% url 'social:begin' 'instagram' %}">Login with Instagram</a>
-                        <input class="button" type="submit" />
-                    </form>
+                    {% else %}
+                        <button class="button" v-on:click="startAddInstagramPOI()">Start</button>
+                        <p>Click on a point you want to add a POI.</p>
+                    {% endif %}
                 </div>
             </div>
             {% verbatim %}

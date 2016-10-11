@@ -9,6 +9,7 @@ var allData = {
     instagramModalState: false,
     modalShow: null,
     showMetaPins: false,
+    addingPOI: false,
     financials: {
         "Navigation": [
             ["Garmin Edge 20", "60.00"],
@@ -114,6 +115,9 @@ function create_app() {
                 fill_map(app.currentCampaign["ride_set"], app.currentCampaign["course_set"], app.showMetaPins);
 
             },
+            startAddInstagramPOI: function() {
+                app.addingPOI = true;
+            },
             setCurrentModal: function(name) {
                 app.modalShow = name;
             },
@@ -168,6 +172,23 @@ function create_app() {
             }, (response) => {
                 // Nope.
             });
+
+            // Add click handler to map
+            var self = this;
+            onMapClick = function(e) {
+                var popup = L.popup();
+                if (self.addingPOI) {
+                    popup.setLatLng(e.latlng)
+                         .setContent("You clicked the map at " + e.latlng.toString())
+                         .openOn(map);
+                } else {
+                    var set = $(".leaflet-popup-close-button");
+                    set.each(function(thing) {
+                        thing.click();
+                    });
+                }
+            }
+            map.on('click', onMapClick);
         }
     });
 }

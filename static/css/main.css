@@ -321,3 +321,9 @@ span.currentCampaign {
 .black {
     color: #666;
 }
+.hoverBottomLeftModal {
+    position: fixed;
+    bottom: 10vh;
+    right: 10vw;
+    z-index: 99999;
+}
