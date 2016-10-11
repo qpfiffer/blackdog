@@ -89,6 +89,12 @@ def instagram_redirect(req):
     return redirect('home')
 
 def add_instagram_poi(req):
+    shortcode_endpoint = "https://api.instagram.com/v1/media/{SHORTCODE}/D?access_token={ACCESS_TOKEN}"
+    if req.method == 'POST':
+        import json
+        parsed = json.loads(req.POST)
+        print "PARSED: " + parsed
+        #formatted_url = shortcode_endpoint.format(SHORTCODE=
     return redirect('home')
 
 def campaignUpload(req):

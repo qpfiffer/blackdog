@@ -1,3 +1,20 @@
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 var map = null;
 
 var campaigns = null;
@@ -117,10 +134,16 @@ function create_app() {
 
             },
             submitInstagramPOI: function(e) {
-                //this.$http.get('').then((response) => {
-                //}, (response) => {
-                //    // Nope.
-                //});
+                var dontCallItAForm = $(e.target).parents(".ghettoForm");
+                var latLng = app.poiLatLng;
+                var shortcode = $(dontCallItAForm).find("input[name=\"shortcode\"]").val();
+                var csrftoken = getCookie('csrftoken');
+                var self = this;
+
+                this.$http.post('/add_instagram_poi/', {latlng: latLng, shortcode: shortcode}, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
+                }, (response) => {
+                    // Nope.
+                });
             },
             setCurrentModal: function(name) {
                 app.modalShow = name;
