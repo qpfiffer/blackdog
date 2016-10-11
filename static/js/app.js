@@ -1,3 +1,14 @@
+L.Map = L.Map.extend({
+    openPopup: function(popup) {
+        //        this.closePopup();  // just comment this
+        this._popup = popup;
+
+        return this.addLayer(popup).fire('popupopen', {
+            popup: this._popup
+        });
+    }
+});
+
 // using jQuery
 function getCookie(name) {
     var cookieValue = null;
@@ -122,6 +133,13 @@ function fill_map(rides, courses, showMetaPins) {
     }
 }
 
+function close_all_popups() {
+    var set = $(".leaflet-popup-close-button");
+    set.each(function(thing) {
+        thing.click();
+    });
+}
+
 function create_app() {
     app = new Vue({
         el: "#main_container",
@@ -133,6 +151,23 @@ function create_app() {
                 fill_map(app.currentCampaign["ride_set"], app.currentCampaign["course_set"], app.showMetaPins);
 
             },
+            updatePOIs: function() {
+                var self = this;
+                this.$http.get('/api/instagram_pois').then((response) => {
+                    close_all_popups();
+                    for (var poi of response.data) {
+                        if (poi.cached_response.meta.code == "200") {
+                            var imageData = poi.cached_response.data.images;
+                            var popup = L.popup()
+                                .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]])
+                                .setContent("<img src=\"" + imageData["thumbnail"]["url"] + "\" />")
+                                .openOn(map);
+                        }
+                    };
+                }, (response) => {
+                    // Nope.
+                });
+            },
             submitInstagramPOI: function(e) {
                 var dontCallItAForm = $(e.target).parents(".ghettoForm");
                 var latLng = app.poiLatLng;
@@ -141,6 +176,7 @@ function create_app() {
                 var self = this;
 
                 this.$http.post('/add_instagram_poi/', {latlng: latLng, shortcode: shortcode}, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
+                    self.updatePOIs();
                 }, (response) => {
                     // Nope.
                 });
@@ -202,17 +238,14 @@ function create_app() {
                 // Nope.
             });
 
+            this.updatePOIs();
+
             // Add click handler to map
             var self = this;
             onMapClick = function(e) {
                 if (self.addingPOI) {
                     self.poiLatLng = e.latlng;
                     self.addingPOI = false;
-                } else {
-                    var set = $(".leaflet-popup-close-button");
-                    set.each(function(thing) {
-                        thing.click();
-                    });
                 }
             }
             map.on('click', onMapClick);
@@ -224,3 +257,5 @@ function init() {
     create_map();
     create_app();
 }
+
+
