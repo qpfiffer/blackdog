@@ -88,6 +88,9 @@ def instagram_redirect(req):
     messages.info(req, 'Instagram now auth\'d.')
     return redirect('home')
 
+def add_instagram_poi(req):
+    return redirect('home')
+
 def campaignUpload(req):
     if not req.user.is_authenticated:
         return redirect('home')

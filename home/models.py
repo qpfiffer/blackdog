@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from address.models import AddressField
 from andablog.models import Entry
 
+from social.apps.django_app.default.models import UserSocialAuth
+
 # RIDE STUFF
 class Campaign(models.Model):
     created_at = models.DateTimeField(auto_now=True)
@@ -33,10 +35,19 @@ class Course(models.Model):
         return self.trackfile.name
 
 class PointOfInterest(models.Model):
-    entry = models.ForeignKey(Entry, null=False, blank=False)
+    created_at = models.DateTimeField(auto_now=True)
     campaign = models.ForeignKey(Campaign, null=False, blank=False)
     lat = models.DecimalField(max_digits=9, decimal_places=6)
     lng = models.DecimalField(max_digits=9, decimal_places=6)
+
+class EntryPointOfInterest(models.Model):
+    poi = models.ForeignKey(PointOfInterest, null=False)
+    entry = models.ForeignKey(Entry, null=False, blank=False)
+
+class InstagramPointOfInterest(models.Model):
+    poi = models.ForeignKey(PointOfInterest, null=False)
+    user_social_auth = models.ForeignKey(UserSocialAuth, blank=False, null=False)
+    shortcode = models.CharField(max_length=128, blank=False, null=False)
 
 # FINANCIALS
 class FinancialCategory(models.Model):

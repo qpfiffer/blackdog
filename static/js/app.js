@@ -10,6 +10,7 @@ var allData = {
     modalShow: null,
     showMetaPins: false,
     addingPOI: false,
+    poiLatLng: null,
     financials: {
         "Navigation": [
             ["Garmin Edge 20", "60.00"],
@@ -115,8 +116,11 @@ function create_app() {
                 fill_map(app.currentCampaign["ride_set"], app.currentCampaign["course_set"], app.showMetaPins);
 
             },
-            startAddInstagramPOI: function() {
-                app.addingPOI = true;
+            submitInstagramPOI: function(e) {
+                //this.$http.get('').then((response) => {
+                //}, (response) => {
+                //    // Nope.
+                //});
             },
             setCurrentModal: function(name) {
                 app.modalShow = name;
@@ -125,6 +129,8 @@ function create_app() {
                 app.uploadModalState = state;
             },
             changeInstagramModalState: function(state) {
+                app.addingPOI = true;
+                app.poiLatLng = "Select point of interest...";
                 app.instagramModalState = state;
             },
         },
@@ -176,11 +182,9 @@ function create_app() {
             // Add click handler to map
             var self = this;
             onMapClick = function(e) {
-                var popup = L.popup();
                 if (self.addingPOI) {
-                    popup.setLatLng(e.latlng)
-                         .setContent("You clicked the map at " + e.latlng.toString())
-                         .openOn(map);
+                    self.poiLatLng = e.latlng;
+                    self.addingPOI = false;
                 } else {
                     var set = $(".leaflet-popup-close-button");
                     set.each(function(thing) {

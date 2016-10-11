@@ -59,8 +59,20 @@
                     {% if not instagram_acct %}
                         <a href="{% url 'social:begin' 'instagram' %}">Login with Instagram</a>
                     {% else %}
-                        <button class="button" v-on:click="startAddInstagramPOI()">Start</button>
+                        {% verbatim %}
                         <p>Click on a point you want to add a POI.</p>
+                        <div>
+                            <label>Point on Map:</label>
+                            <span>{{ poiLatLng.toString() }}</span>
+                        </div>
+                        <div>
+                            <label>Image URL:</label>
+                            <input type="text" name="shortcode" />
+                        </div>
+                        <div>
+                            <button class="button" v-on:click="submitInstagramPOI()">Submit</button>
+                        </div>
+                        {% endverbatim %}
                     {% endif %}
                 </div>
             </div>
