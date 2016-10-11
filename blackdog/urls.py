@@ -22,7 +22,7 @@ from rest_framework import routers, viewsets
 
 from home.views import home, campaignUpload, UserViewSet, BlogViewSet, BlogImageViewSet,\
                        RideViewSet, CourseViewSet, CampaignViewSet, instagram_redirect,\
-                       add_instagram_poi
+                       add_instagram_poi, InstagramPOIViewSet, POIViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -32,6 +32,8 @@ router.register(r'blog_images', BlogImageViewSet)
 router.register(r'rides', RideViewSet)
 router.register(r'courses', CourseViewSet)
 router.register(r'campaigns', CampaignViewSet)
+router.register(r'instagram_pois', InstagramPOIViewSet)
+router.register(r'pois', POIViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),

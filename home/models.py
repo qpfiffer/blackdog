@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
 
 from address.models import AddressField
 from andablog.models import Entry
@@ -49,6 +50,7 @@ class InstagramPointOfInterest(models.Model):
     poi = models.ForeignKey(PointOfInterest, null=False)
     user_social_auth = models.ForeignKey(UserSocialAuth, blank=False, null=False)
     shortcode = models.CharField(max_length=128, blank=False, null=False)
+    cached_response = JSONField(default=dict)
 
 # FINANCIALS
 class FinancialCategory(models.Model):

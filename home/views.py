@@ -61,7 +61,7 @@ class RideSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('uploaded', 'campaign', 'trackfile')
 
 class RideViewSet(viewsets.ModelViewSet):
-    queryset = Ride.objects.filter()
+    queryset = Ride.objects.all()
     serializer_class = RideSerializer
 
 class CampaignSerializer(serializers.HyperlinkedModelSerializer):
@@ -72,6 +72,25 @@ class CampaignSerializer(serializers.HyperlinkedModelSerializer):
         depth = 1
         fields = ('owner', 'created_at', 'name', 'about', 'ride_set', 'course_set')
 
+class PointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = PointOfInterest
+        fields = ('lat', 'lng', 'created_at')
+
+class InstagramPointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = InstagramPointOfInterest
+        fields = ('poi', 'cached_response')
+        depth = 1
+
+class POIViewSet(viewsets.ModelViewSet):
+    queryset = PointOfInterest.objects.all()
+    serializer_class = PointOfInterestSerializer
+
+class InstagramPOIViewSet(viewsets.ModelViewSet):
+    queryset = InstagramPointOfInterest.objects.all()
+    serializer_class = InstagramPointOfInterestSerializer
+
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.filter()
     serializer_class = CampaignSerializer
@@ -80,7 +99,10 @@ def home(req):
     upload_form = UploadCampaignForm(req.user)
     all_messages = json.dumps([x.message for x in messages.get_messages(req)])
     available_backends = load_backends(['social.backends.instagram.InstagramOAuth2'])
-    instagram_acct = UserSocialAuth.objects.filter(user=req.user, provider='instagram')
+    if req.user.is_authenticated():
+        instagram_acct = UserSocialAuth.objects.filter(user=req.user, provider='instagram')
+    else:
+        instagram_acct = None
 
     return render(req, "index.html", locals())
 
@@ -109,7 +131,7 @@ def add_instagram_poi(req):
         resp = requests.get(formatted_url)
         # XXX: Not the first one. But fuck you.
         poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
-        InstagramPointOfInterest.objects.create(poi=poi, shortcode=shortcode, user_social_auth=instagram_acct)
+        InstagramPointOfInterest.objects.create(poi=poi, shortcode=shortcode, user_social_auth=instagram_acct, cached_response=resp.json())
 
     return redirect('home')
 
