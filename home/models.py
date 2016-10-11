@@ -7,6 +7,7 @@ from address.models import AddressField
 from andablog.models import Entry
 
 from social.apps.django_app.default.models import UserSocialAuth
+from datetime import datetime
 
 # RIDE STUFF
 class Campaign(models.Model):
@@ -35,7 +36,7 @@ class Course(models.Model):
         return self.trackfile.name
 
 class PointOfInterest(models.Model):
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(default=datetime.now)
     campaign = models.ForeignKey(Campaign, null=False, blank=False)
     lat = models.DecimalField(max_digits=9, decimal_places=6)
     lng = models.DecimalField(max_digits=9, decimal_places=6)

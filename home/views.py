@@ -10,8 +10,8 @@ from social.backends.utils import load_backends
 from social.apps.django_app.default.models import UserSocialAuth
 
 from home.forms import UploadCampaignForm
-from home.models import Campaign, Course, Ride
-import json
+from home.models import Campaign, Course, Ride, PointOfInterest, InstagramPointOfInterest
+import json, requests
 
 # Why is everything in here? Whatever.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -89,12 +89,28 @@ def instagram_redirect(req):
     return redirect('home')
 
 def add_instagram_poi(req):
-    shortcode_endpoint = "https://api.instagram.com/v1/media/{SHORTCODE}/D?access_token={ACCESS_TOKEN}"
+    shortcode_endpoint = "https://api.instagram.com/v1/media/shortcode/{SHORTCODE}?access_token={ACCESS_TOKEN}"
+    instagram_acct = UserSocialAuth.objects.get(user=req.user, provider='instagram')
+    if not instagram_acct:
+        messages.error(req, 'Please auth with Instagram first.')
+        return redirect('home')
+
     if req.method == 'POST':
-        import json
-        parsed = json.loads(req.POST)
-        print "PARSED: " + parsed
-        #formatted_url = shortcode_endpoint.format(SHORTCODE=
+        parsed = json.loads(req.body)
+        shortcode = parsed.get("shortcode", None)
+        if shortcode and "http" in shortcode:
+            shortcode = shortcode.split("/")[-2]
+        latlng = parsed.get("latlng", None)
+        if not shortcode or not latlng:
+            messages.error(req, 'Shortcode or latlng not specified.')
+            return redirect('home')
+
+        formatted_url = shortcode_endpoint.format(SHORTCODE=shortcode, ACCESS_TOKEN=instagram_acct.access_token)
+        resp = requests.get(formatted_url)
+        # XXX: Not the first one. But fuck you.
+        poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
+        InstagramPointOfInterest.objects.create(poi=poi, shortcode=shortcode, user_social_auth=instagram_acct)
+
     return redirect('home')
 
 def campaignUpload(req):
