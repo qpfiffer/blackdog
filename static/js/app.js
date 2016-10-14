@@ -140,7 +140,9 @@ function create_app() {
                             map.addLayer(marker);
 
                             var popup = L.popup()
-                                .setContent("<img src=\"" + imageData["thumbnail"]["url"] + "\" />");
+                                .setContent("<img src=\"" + imageData["thumbnail"]["url"] + "\" />"
+                                            + "<p><a href=\"" + poi.cached_response.data.link + "\">Details &raquo;</a></p>"
+                                            + "<p>" + poi.cached_response.data.caption.text + "</p>");
                             marker.bindPopup(popup)
                         }
                     };
@@ -149,13 +151,20 @@ function create_app() {
                 });
             },
             submitPOI: function(e) {
-                var dontCallItAForm = $(e.target).parents(".ghettoForm");
                 var latLng = app.poiLatLng;
-                var shortcode = $(dontCallItAForm).find("input[name=\"shortcode\"]").val();
+                var shortcode = app.poiShortcode;
+                var type = app.poiType;
+                var text = app.poiText;
                 var csrftoken = getCookie('csrftoken');
+                var data = {
+                    latlng: latLng,
+                    shortcode: shortcode,
+                    type: type,
+                    text: text
+                };
                 var self = this;
 
-                this.$http.post('/add_poi/', {latlng: latLng, shortcode: shortcode}, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
+                this.$http.post('/add_poi/', data, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
                     self.updatePOIs();
                 }, (response) => {
                     // Nope.

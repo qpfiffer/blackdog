@@ -74,11 +74,11 @@
                             </div>
                             <div v-show="poiType == 'instagram'">
                                 <label>Image URL:</label>
-                                <input type="text" name="shortcode" />
+                                <input v-model="poiShortcode" type="text" name="shortcode" />
                             </div>
                             <div v-show="poiType == 'text'">
                                 <label>Text:</label>
-                                <input type="textarea" name="poiText" />
+                                <input type="text" v-model="poiText" name="poiText" />
                             </div>
                             <div>
                                 <button class="button" v-on:click="submitInstagramPOI($event)">Submit</button>
