@@ -113,6 +113,9 @@ function close_all_popups() {
     });
 }
 
+function delete_all_markers() {
+}
+
 function create_app() {
     app = new Vue({
         el: "#main_container",
@@ -126,15 +129,19 @@ function create_app() {
             },
             updatePOIs: function() {
                 var self = this;
-                this.$http.get('/api/pois').then((response) => {
+                this.$http.get('/api/instagram_pois').then((response) => {
                     close_all_popups();
+                    delete_all_markers();
                     for (var poi of response.data) {
                         if (poi.cached_response.meta.code == "200") {
                             var imageData = poi.cached_response.data.images;
+                            var marker = new L.Marker()
+                                .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                            map.addLayer(marker);
+
                             var popup = L.popup()
-                                .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]])
-                                .setContent("<img src=\"" + imageData["thumbnail"]["url"] + "\" />")
-                                .openOn(map);
+                                .setContent("<img src=\"" + imageData["thumbnail"]["url"] + "\" />");
+                            marker.bindPopup(popup)
                         }
                     };
                 }, (response) => {
