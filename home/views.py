@@ -10,7 +10,8 @@ from social.backends.utils import load_backends
 from social.apps.django_app.default.models import UserSocialAuth
 
 from home.forms import UploadCampaignForm
-from home.models import Campaign, Course, Ride, PointOfInterest, InstagramPointOfInterest
+from home.models import Campaign, Course, Ride, PointOfInterest, InstagramPointOfInterest,\
+                        EntryPointOfInterest, TextPointOfInterest
 import json, requests
 
 # Why is everything in here? Whatever.
@@ -83,6 +84,18 @@ class InstagramPointOfInterestSerializer(serializers.HyperlinkedModelSerializer)
         fields = ('poi', 'cached_response')
         depth = 1
 
+class TextPointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = TextPointOfInterest
+        fields = ('text',)
+        depth = 1
+
+class EntryPointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = EntryPointOfInterest
+        fields = ('entry',)
+        depth = 1
+
 class POIViewSet(viewsets.ModelViewSet):
     queryset = PointOfInterest.objects.all()
     serializer_class = PointOfInterestSerializer
@@ -90,6 +103,14 @@ class POIViewSet(viewsets.ModelViewSet):
 class InstagramPOIViewSet(viewsets.ModelViewSet):
     queryset = InstagramPointOfInterest.objects.all()
     serializer_class = InstagramPointOfInterestSerializer
+
+class EntryPOIViewSet(viewsets.ModelViewSet):
+    queryset = EntryPointOfInterest.objects.all()
+    serializer_class = EntryPointOfInterestSerializer
+
+class TextPOIViewSet(viewsets.ModelViewSet):
+    queryset = TextPointOfInterest.objects.all()
+    serializer_class = TextPointOfInterestSerializer
 
 class CampaignViewSet(viewsets.ModelViewSet):
     queryset = Campaign.objects.filter()
