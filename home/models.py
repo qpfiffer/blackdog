@@ -44,13 +44,17 @@ class PointOfInterest(models.Model):
 
 class EntryPointOfInterest(models.Model):
     poi = models.ForeignKey(PointOfInterest, null=False)
-    entry = models.ForeignKey(Entry, null=False, blank=False)
+    entry = models.ForeignKey(Entry)
 
 class InstagramPointOfInterest(models.Model):
     poi = models.ForeignKey(PointOfInterest, null=False)
     user_social_auth = models.ForeignKey(UserSocialAuth, blank=False, null=False)
     shortcode = models.CharField(max_length=128, blank=False, null=False)
     cached_response = JSONField(default=dict)
+
+class TextPointOfInterest(models.Model):
+    poi = models.ForeignKey(PointOfInterest, null=False)
+    text = models.TextField()
 
 # FINANCIALS
 class FinancialCategory(models.Model):

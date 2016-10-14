@@ -119,19 +119,33 @@ def add_poi(req):
 
     if req.method == 'POST':
         parsed = json.loads(req.body)
-        shortcode = parsed.get("shortcode", None)
-        if shortcode and "http" in shortcode:
-            shortcode = shortcode.split("/")[-2]
         latlng = parsed.get("latlng", None)
-        if not shortcode or not latlng:
-            messages.error(req, 'Shortcode or latlng not specified.')
+        poi_type = parsed.get("type", None)
+        if not poi_type or not latlng:
+            messages.error(req, 'Type or latlng not specified.')
             return redirect('home')
 
-        formatted_url = shortcode_endpoint.format(SHORTCODE=shortcode, ACCESS_TOKEN=instagram_acct.access_token)
-        resp = requests.get(formatted_url)
-        # XXX: Not the first one. But fuck you.
-        poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
-        InstagramPointOfInterest.objects.create(poi=poi, shortcode=shortcode, user_social_auth=instagram_acct, cached_response=resp.json())
+        if poi_type == "instagram":
+            shortcode = parsed.get("shortcode", None)
+            if shortcode and "http" in shortcode:
+                shortcode = shortcode.split("/")[-2]
+
+            formatted_url = shortcode_endpoint.format(SHORTCODE=shortcode, ACCESS_TOKEN=instagram_acct.access_token)
+            resp = requests.get(formatted_url)
+            # XXX: Not the first one. But fuck you.
+            poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
+            InstagramPointOfInterest.objects.create(poi=poi, shortcode=shortcode, user_social_auth=instagram_acct, cached_response=resp.json())
+            messages.info(req, 'Added new Instagram POI')
+        elif poi_type == "entry":
+            # XXX: Not the first one. But fuck you.
+            poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
+            EntryPointOfInterest.objects.create(poi=poi, entry=None)
+            messages.info(req, 'Added new Entry POI')
+        elif poi_type == "text":
+            # XXX: Not the first one. But fuck you.
+            poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
+            TextPointOfInterest.objects.create(poi=poi, text=parsed.get("text", ""))
+            messages.info(req, 'Added new text POI')
 
     return redirect('home')
 
