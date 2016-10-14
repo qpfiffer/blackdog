@@ -141,12 +141,17 @@ function create_app() {
                 this.$http.get('/api/entry_pois').then((response) => {
                     close_all_popups();
                     for (var poi of response.data) {
-                        var marker = new L.Marker().setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                        var lat = poi["poi"]["lat"];
+                        var lng = poi["poi"]["lng"];
+                        var marker = new L.Marker().setLatLng([lat, lng]) ;
                         map.addLayer(marker);
 
-                        var popup = L.popup()
-                            .setContent("I correspond to an Entry.");
-                        marker.bindPopup(popup)
+                        var self = this;
+                        onEntryClick = function(e) {
+                            var zoom = 10;
+                            map.setView([lat, lng], zoom);
+                        }
+                        marker.on('click', onEntryClick);
                     };
                 }, (response) => {
                     // Nope.
