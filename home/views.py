@@ -160,7 +160,7 @@ def add_poi(req):
         elif poi_type == "entry":
             # XXX: Not the first one. But fuck you.
             poi = PointOfInterest.objects.create(campaign=Campaign.objects.all()[0], lat=latlng["lat"], lng=latlng["lng"])
-            EntryPointOfInterest.objects.create(poi=poi, entry=None)
+            EntryPointOfInterest.objects.create(poi=poi, entry=Entry.objects.all()[0])
             messages.info(req, 'Added new Entry POI')
         elif poi_type == "text":
             # XXX: Not the first one. But fuck you.

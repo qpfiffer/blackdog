@@ -1,14 +1,3 @@
-L.Map = L.Map.extend({
-    openPopup: function(popup) {
-        //        this.closePopup();  // just comment this
-        this._popup = popup;
-
-        return this.addLayer(popup).fire('popupopen', {
-            popup: this._popup
-        });
-    }
-});
-
 // using jQuery
 function getCookie(name) {
     var cookieValue = null;
@@ -152,9 +141,7 @@ function create_app() {
                 this.$http.get('/api/entry_pois').then((response) => {
                     close_all_popups();
                     for (var poi of response.data) {
-                        var imageData = poi.cached_response.data.images;
-                        var marker = new L.Marker()
-                            .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                        var marker = new L.Marker().setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
                         map.addLayer(marker);
 
                         var popup = L.popup()

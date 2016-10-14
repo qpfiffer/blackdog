@@ -44,7 +44,7 @@ class PointOfInterest(models.Model):
 
 class EntryPointOfInterest(models.Model):
     poi = models.ForeignKey(PointOfInterest, null=False)
-    entry = models.ForeignKey(Entry)
+    entry = models.ForeignKey(Entry, null=False, blank=False)
 
 class InstagramPointOfInterest(models.Model):
     poi = models.ForeignKey(PointOfInterest, null=False)
