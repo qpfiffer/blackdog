@@ -131,7 +131,6 @@ function create_app() {
                 var self = this;
                 this.$http.get('/api/instagram_pois').then((response) => {
                     close_all_popups();
-                    delete_all_markers();
                     for (var poi of response.data) {
                         if (poi.cached_response.meta.code == "200") {
                             var imageData = poi.cached_response.data.images;
@@ -145,6 +144,35 @@ function create_app() {
                                             + "<p>" + poi.cached_response.data.caption.text + "</p>");
                             marker.bindPopup(popup)
                         }
+                    };
+                }, (response) => {
+                    // Nope.
+                });
+
+                this.$http.get('/api/entry_pois').then((response) => {
+                    close_all_popups();
+                    for (var poi of response.data) {
+                        var imageData = poi.cached_response.data.images;
+                        var marker = new L.Marker()
+                            .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                        map.addLayer(marker);
+
+                        var popup = L.popup()
+                            .setContent("I correspond to an Entry.");
+                        marker.bindPopup(popup)
+                    };
+                }, (response) => {
+                    // Nope.
+                });
+
+                this.$http.get('/api/text_pois').then((response) => {
+                    close_all_popups();
+                    for (var poi of response.data) {
+                        var marker = new L.Marker().setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                        map.addLayer(marker);
+
+                        var popup = L.popup() .setContent(poi.text);
+                        marker.bindPopup(popup)
                     };
                 }, (response) => {
                     // Nope.

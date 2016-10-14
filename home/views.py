@@ -87,13 +87,13 @@ class InstagramPointOfInterestSerializer(serializers.HyperlinkedModelSerializer)
 class TextPointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = TextPointOfInterest
-        fields = ('text',)
+        fields = ('poi', 'text')
         depth = 1
 
 class EntryPointOfInterestSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = EntryPointOfInterest
-        fields = ('entry',)
+        fields = ('poi', 'entry',)
         depth = 1
 
 class POIViewSet(viewsets.ModelViewSet):
