@@ -22,7 +22,7 @@ from rest_framework import routers, viewsets
 
 from home.views import home, campaignUpload, UserViewSet, BlogViewSet, BlogImageViewSet,\
                        RideViewSet, CourseViewSet, CampaignViewSet, instagram_redirect,\
-                       add_instagram_poi, InstagramPOIViewSet, POIViewSet
+                       add_poi, InstagramPOIViewSet, POIViewSet
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
@@ -42,6 +42,6 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^instagram_redirect/', instagram_redirect, name='instagram_redirect'),
-    url(r'^add_instagram_poi/', add_instagram_poi, name='add_instagram_poi'),
+    url(r'^add_poi/', add_poi, name='add_poi'),
     url('', include('social.apps.django_app.urls', namespace='social'))
 ]# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

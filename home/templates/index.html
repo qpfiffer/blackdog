@@ -29,7 +29,7 @@
                     {% verbatim %}
                     <ul class="login_register">
                         <li><a v-on:click="changeUploadModalState(true)" href="#uploadModal">Upload</a></li>
-                        <li><a v-on:click="changeInstagramModalState(true)" href="#instagramModal">Add Instagram POI</a></li>
+                        <li><a v-on:click="changePOIModalState(true)" href="#POIModal">Add POI</a></li>
                     </ul>
                     {% endverbatim %}
                 {% endif %}
@@ -50,10 +50,10 @@
                     </form>
                 </div>
             </div>
-            <div v-show="instagramModalState" id="instagramModal" class="hoverBottomLeftModal" v-bind:class="{ 'innerModalShown': instagramModalState }">
+            <div v-show="POIModalState" id="POIModal" class="hoverBottomLeftModal" v-bind:class="{ 'innerModalShown': POIModalState}">
                 <div class="innerModal">
                     {% verbatim %}
-                    <p class="cancelIconScrollable" v-on:click="changeInstagramModalState(false)">&#xd7;</p>
+                    <p class="cancelIconScrollable" v-on:click="changePOIModalState(false)">&#xd7;</p>
                     {% endverbatim %}
                     <h2>INSTAGRAM</h2>
                     {% if not instagram_acct %}
@@ -63,12 +63,22 @@
                         <p>Click on a point you want to add a POI.</p>
                         <div class="ghettoForm">
                             <div>
+                                <label>POI Type:</label>
+                                <select v-model="poiType">
+                                    <option v-for="poi in poiTypes" v-bind:value="poi.value">{{poi.text}}</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label>Point on Map:</label>
                                 <span>{{ poiLatLng.toString() }}</span>
                             </div>
-                            <div>
+                            <div v-show="poiType == 'instagram'">
                                 <label>Image URL:</label>
                                 <input type="text" name="shortcode" />
+                            </div>
+                            <div v-show="poiType == 'text'">
+                                <label>Text:</label>
+                                <input type="textarea" name="poiText" />
                             </div>
                             <div>
                                 <button class="button" v-on:click="submitInstagramPOI($event)">Submit</button>

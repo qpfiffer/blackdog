@@ -34,46 +34,19 @@ var journalEntries = null;
 var allData = {
     message: "TEST!",
     uploadModalState: false,
-    instagramModalState: false,
+    POIModalState: false,
     modalShow: null,
     showMetaPins: false,
     addingPOI: false,
     poiLatLng: null,
-    financials: {
-        "Navigation": [
-            ["Garmin Edge 20", "60.00"],
-            ["Map of the West Coast", "6.00"],
-        ],
-        "Camping": [
-            ["Buckles", "1.90"],
-            ["Etekcity Ultralight Backpacking Stove", "10.99"],
-            ["Big Agnes Scout UL2", "149.99"],
-            ["REI Kingdom 4 Tent Footprint", "29.83"],
-            ["REI Adjustable Tarp Pole", "12.99"],
-            ["iPerb Aluminum Tent Stakes (14)", "9.59"],
-
-        ],
-        "Bags": [
-            ["REI 25 Liter Drybag (w/ $20.00 gift card)", "1.95"],
-        ],
-        "Bikes": [
-            ["Karate Monkey SS Frame (M)", "300.00"],
-            ["Karate Monkey Ops (S)", "640.00"],
-        ],
-        "Sewing Supplies": [
-            ["White Chalk", "3.93"],
-            ["Small Binder Clips", "3.33"],
-            ["Metal Bobbins (15)", "3.99"],
-            ["1\" Webbing", "6.88"],
-            ["7/8\" Bias Tape", "9.24"],
-            ["1\" Plastic Buckles (12)", "4.99"],
-            ["Bias Tape Foot for Sewing Machine", "13.99"],
-            ["1\" Plastic Triglide Slides (20)", "6.62"],
-        ]
-    },
     campaigns: null,
     currentCampaign: null,
     journalEntries: null,
+    poiTypes: [
+        {value: "instagram", text: "Instagram"},
+        {value: "text", text: "Text"},
+        {value: "entry", text: "Blog Entry"},
+    ],
 }
 
 function _add_gpx(map, url, color, opacity, showMetaPins) {
@@ -153,7 +126,7 @@ function create_app() {
             },
             updatePOIs: function() {
                 var self = this;
-                this.$http.get('/api/instagram_pois').then((response) => {
+                this.$http.get('/api/pois').then((response) => {
                     close_all_popups();
                     for (var poi of response.data) {
                         if (poi.cached_response.meta.code == "200") {
@@ -168,14 +141,14 @@ function create_app() {
                     // Nope.
                 });
             },
-            submitInstagramPOI: function(e) {
+            submitPOI: function(e) {
                 var dontCallItAForm = $(e.target).parents(".ghettoForm");
                 var latLng = app.poiLatLng;
                 var shortcode = $(dontCallItAForm).find("input[name=\"shortcode\"]").val();
                 var csrftoken = getCookie('csrftoken');
                 var self = this;
 
-                this.$http.post('/add_instagram_poi/', {latlng: latLng, shortcode: shortcode}, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
+                this.$http.post('/add_poi/', {latlng: latLng, shortcode: shortcode}, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
                     self.updatePOIs();
                 }, (response) => {
                     // Nope.
@@ -187,10 +160,10 @@ function create_app() {
             changeUploadModalState: function(state) {
                 app.uploadModalState = state;
             },
-            changeInstagramModalState: function(state) {
+            changePOIModalState: function(state) {
                 app.addingPOI = true;
                 app.poiLatLng = "Select point of interest...";
-                app.instagramModalState = state;
+                app.POIModalState = state;
             },
         },
         computed: {

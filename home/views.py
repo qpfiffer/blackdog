@@ -110,7 +110,7 @@ def instagram_redirect(req):
     messages.info(req, 'Instagram now auth\'d.')
     return redirect('home')
 
-def add_instagram_poi(req):
+def add_poi(req):
     shortcode_endpoint = "https://api.instagram.com/v1/media/shortcode/{SHORTCODE}?access_token={ACCESS_TOKEN}"
     instagram_acct = UserSocialAuth.objects.get(user=req.user, provider='instagram')
     if not instagram_acct:
