@@ -392,3 +392,8 @@ span.currentCampaign {
     font-size: 36px;
     text-shadow: 4px 4px 4px #000;
 }
+.journalContent img {
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+}
