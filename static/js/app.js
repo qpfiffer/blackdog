@@ -150,6 +150,19 @@ function create_app() {
                         onEntryClick = function(e) {
                             var zoom = 10;
                             map.setView([lat, lng], zoom);
+
+                            self.setCurrentModal('journal');
+                            for (var entry of $(".journalEntry")) {
+                                if (poi["entry"]["slug"] == $(entry).attr("id")) {
+                                    self.setCurrentModal('journal');
+                                    Vue.nextTick(function() {
+                                        $(entry)[0].scrollIntoView({
+                                            behavior: "smooth",
+                                            block: "start"
+                                        });
+                                    });
+                                }
+                            }
                         }
                         marker.on('click', onEntryClick);
                     };
