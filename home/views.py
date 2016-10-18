@@ -39,7 +39,7 @@ class BlogSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('title', 'slug', 'content', 'published_timestamp', 'author', 'entryimage_set')
 
 class BlogViewSet(viewsets.ModelViewSet):
-    queryset = Entry.objects.filter(is_published=True)
+    queryset = Entry.objects.filter(is_published=True).order_by('-published_timestamp')
     serializer_class = BlogSerializer
 
 class BlogImageViewSet(viewsets.ModelViewSet):
