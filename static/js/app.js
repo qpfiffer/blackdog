@@ -22,6 +22,7 @@ var journalEntries = null;
 
 var allData = {
     message: "TEST!",
+    currentJournalEntry: null,
     uploadModalState: false,
     POIModalState: false,
     modalShow: null,
@@ -234,16 +235,20 @@ function create_app() {
 
                 Vue.nextTick(function() {
                     if (window.location.hash != null) {
-                        for (var entry of $(".journalEntry")) {
-                            if (window.location.hash == "#" + $(entry).attr("id")) {
+                        for (var entry of self.journalEntries) {
+                            if (window.location.hash == "#" + entry.slug) {
+                                self.currentJournalEntry = entry;
                                 self.setCurrentModal('journal');
                                 Vue.nextTick(function() {
-                                    $(entry)[0].scrollIntoView({
+                                    $(".journalEntryHeaderBlock")[0].scrollIntoView({
                                         behavior: "smooth", // or "auto" or "instant"
                                         block: "start" // or "end"
                                     });
                                 });
                             }
+                        }
+                        if (self.currentJournalEntry == null) {
+                            self.currentJournalEntry = self.journalEntries[0];
                         }
                     }
                 });
