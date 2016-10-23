@@ -184,6 +184,9 @@ function create_app() {
                     // Nope.
                 });
             },
+            setCurrentJournalEntry: function(journalEntry) {
+                this.currentJournalEntry = journalEntry;
+            },
             submitPOI: function(e) {
                 var latLng = app.poiLatLng;
                 var shortcode = app.poiShortcode;
@@ -237,7 +240,7 @@ function create_app() {
                     if (window.location.hash != null) {
                         for (var entry of self.journalEntries) {
                             if (window.location.hash == "#" + entry.slug) {
-                                self.currentJournalEntry = entry;
+                                self.setCurrentJournalEntry(entry);
                                 self.setCurrentModal('journal');
                                 Vue.nextTick(function() {
                                     $(".journalEntryHeaderBlock")[0].scrollIntoView({
@@ -248,7 +251,7 @@ function create_app() {
                             }
                         }
                         if (self.currentJournalEntry == null) {
-                            self.currentJournalEntry = self.journalEntries[0];
+                            self.setCurrentJournalEntry(self.journalEntries[0]);
                         }
                     }
                 });
