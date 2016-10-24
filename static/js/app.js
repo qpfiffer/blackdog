@@ -81,9 +81,6 @@ function create_map() {
     map.addLayer(layer);
 }
 
-function erase_map() {
-}
-
 function fill_map(rides, courses, showMetaPins) {
     for (var ride of rides) {
         var gpx = ride.trackfile;
@@ -113,7 +110,6 @@ function create_app() {
         methods: {
             changeCampaign: function(idx) {
                 app.currentCampaign = app.campaigns[idx];
-                erase_map();
                 fill_map(app.currentCampaign["ride_set"], app.currentCampaign["course_set"], app.showMetaPins);
 
             },
@@ -153,17 +149,20 @@ function create_app() {
                             map.setView([lat, lng], zoom);
 
                             self.setCurrentModal('journal');
-                            for (var entry of $(".journalEntry")) {
-                                if (poi["entry"]["slug"] == $(entry).attr("id")) {
-                                    self.setCurrentModal('journal');
-                                    Vue.nextTick(function() {
-                                        $(entry)[0].scrollIntoView({
-                                            behavior: "smooth",
-                                            block: "start"
-                                        });
-                                    });
-                                }
-                            }
+							for (var entry of self.journalEntries) {
+							    if (poi["entry"]["slug"] == entry.slug) {
+								self.setCurrentJournalEntry(entry);
+								Vue.nextTick(function() {
+								    $(".journalEntryHeaderBlock")[0].scrollIntoView({
+									behavior: "smooth", // or "auto" or "instant"
+									block: "start" // or "end"
+								    });
+								});
+							    }
+							}
+							if (self.currentJournalEntry == null) {
+							    self.setCurrentJournalEntry(self.journalEntries[0]);
+							}
                         }
                         marker.on('click', onEntryClick);
                     };
