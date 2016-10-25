@@ -120,8 +120,10 @@ function create_app() {
                     for (var poi of response.data) {
                         if (poi.cached_response.meta.code == "200") {
                             var imageData = poi.cached_response.data.images;
-                            var marker = new L.Marker()
-                                .setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                            var marker = new L.Marker([poi["poi"]["lat"], poi["poi"]["lng"]], {
+                                    icon: L.icon.glyph({
+                                        prefix: 'glyphicon',
+                                        glyph: 'picture'})});
                             map.addLayer(marker);
 
                             var popup = L.popup()
@@ -140,7 +142,10 @@ function create_app() {
                     for (var poi of response.data) {
                         var lat = poi["poi"]["lat"];
                         var lng = poi["poi"]["lng"];
-                        var marker = new L.Marker().setLatLng([lat, lng]) ;
+                        var marker = new L.Marker([lat, lng], {
+                            icon: L.icon.glyph({
+                                prefix: 'glyphicon',
+                                glyph: 'book'})});
                         map.addLayer(marker);
 
                         var self = this;
@@ -149,20 +154,20 @@ function create_app() {
                             map.setView([lat, lng], zoom);
 
                             self.setCurrentModal('journal');
-							for (var entry of self.journalEntries) {
-							    if (poi["entry"]["slug"] == entry.slug) {
-								self.setCurrentJournalEntry(entry);
-								Vue.nextTick(function() {
-								    $(".journalEntryHeaderBlock")[0].scrollIntoView({
-									behavior: "smooth", // or "auto" or "instant"
-									block: "start" // or "end"
-								    });
-								});
-							    }
-							}
-							if (self.currentJournalEntry == null) {
-							    self.setCurrentJournalEntry(self.journalEntries[0]);
-							}
+                            for (var entry of self.journalEntries) {
+                                if (poi["entry"]["slug"] == entry.slug) {
+                                self.setCurrentJournalEntry(entry);
+                                Vue.nextTick(function() {
+                                    $(".journalEntryHeaderBlock")[0].scrollIntoView({
+                                    behavior: "smooth", // or "auto" or "instant"
+                                    block: "start" // or "end"
+                                    });
+                                });
+                                }
+                            }
+                            if (self.currentJournalEntry == null) {
+                                self.setCurrentJournalEntry(self.journalEntries[0]);
+                            }
                         }
                         marker.on('click', onEntryClick);
                     };
@@ -173,7 +178,12 @@ function create_app() {
                 this.$http.get('/api/text_pois').then((response) => {
                     close_all_popups();
                     for (var poi of response.data) {
-                        var marker = new L.Marker().setLatLng([poi["poi"]["lat"], poi["poi"]["lng"]]) ;
+                        var lat = poi["poi"]["lat"];
+                        var lng = poi["poi"]["lng"];
+                        var marker = new L.Marker([lat, lng], {
+                            icon: L.icon.glyph({
+                                prefix: 'glyphicon',
+                                glyph: 'eye-open'})});
                         map.addLayer(marker);
 
                         var popup = L.popup() .setContent(poi.text);
