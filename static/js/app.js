@@ -122,8 +122,8 @@ function create_app() {
                             var imageData = poi.cached_response.data.images;
                             var marker = new L.Marker([poi["poi"]["lat"], poi["poi"]["lng"]], {
                                     icon: L.icon.glyph({
-                                        prefix: 'glyphicon',
-                                        glyph: 'picture'})});
+                                        prefix: 'mdi',
+                                        glyph: 'panorama'})});
                             map.addLayer(marker);
 
                             var popup = L.popup()
@@ -144,7 +144,7 @@ function create_app() {
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
                             icon: L.icon.glyph({
-                                prefix: 'glyphicon',
+                                prefix: 'mdi',
                                 glyph: 'book'})});
                         map.addLayer(marker);
 
@@ -182,8 +182,8 @@ function create_app() {
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
                             icon: L.icon.glyph({
-                                prefix: 'glyphicon',
-                                glyph: 'eye-open'})});
+                                prefix: 'mdi',
+                                glyph: 'eye'})});
                         map.addLayer(marker);
 
                         var popup = L.popup() .setContent(poi.text);
