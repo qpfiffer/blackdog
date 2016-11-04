@@ -39,7 +39,7 @@ var allData = {
     ],
 }
 
-function _add_gpx(map, url, color, opacity, showMetaPins) {
+function _add_gpx(map, url, color, opacity, showMetaPins, shouldZoom) {
     var pinsOptions = {
         startIconUrl: '/static/img/pin-icon-start.png',
         endIconUrl: '/static/img/pin-icon-end.png',
@@ -65,7 +65,9 @@ function _add_gpx(map, url, color, opacity, showMetaPins) {
         },
         marker_options: !!showMetaPins ? pinsOptions : noPinsOptions,
     }).on('loaded', function(e) {
-        //map.fitBounds(e.target.getBounds());
+        if (shouldZ;oom) {
+            map.fitBounds(e.target.getBounds());
+        }
     }).addTo(map);
 }
 
@@ -84,12 +86,12 @@ function create_map() {
 function fill_map(rides, courses, showMetaPins) {
     for (var ride of rides) {
         var gpx = ride.trackfile;
-        _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins);
+        _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins, true);
     }
 
     for (var course of courses) {
         var gpx = course.trackfile;
-        _add_gpx(map, gpx, "#000", 0.6, showMetaPins);
+        _add_gpx(map, gpx, "#000", 0.6, showMetaPins, false);
     }
 }
 
