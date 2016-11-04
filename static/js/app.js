@@ -65,7 +65,7 @@ function _add_gpx(map, url, color, opacity, showMetaPins, shouldZoom) {
         },
         marker_options: !!showMetaPins ? pinsOptions : noPinsOptions,
     }).on('loaded', function(e) {
-        if (shouldZ;oom) {
+        if (shouldZoom) {
             map.fitBounds(e.target.getBounds());
         }
     }).addTo(map);
