@@ -86,7 +86,11 @@ function create_map() {
 function fill_map(rides, courses, showMetaPins) {
     for (var ride of rides) {
         var gpx = ride.trackfile;
-        _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins, true);
+        if (ride == rides[rides.length - 1]) {
+            _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins, true);
+        } else {
+            _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins, false);
+        }
     }
 
     for (var course of courses) {
