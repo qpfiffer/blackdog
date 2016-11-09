@@ -59,10 +59,10 @@ class CourseViewSet(viewsets.ModelViewSet):
 class RideSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Ride
-        fields = ('uploaded', 'campaign', 'trackfile')
+        fields = ('id', 'uploaded', 'campaign', 'trackfile')
 
 class RideViewSet(viewsets.ModelViewSet):
-    queryset = Ride.objects.all()
+    queryset = Ride.objects.all().order_by('-id')
     serializer_class = RideSerializer
 
 class CampaignSerializer(serializers.HyperlinkedModelSerializer):
