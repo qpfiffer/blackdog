@@ -99,7 +99,6 @@
                             <li><a v-on:click="setCurrentModal('about')" href="#">About</a></li>
                             <li><a v-on:click="setCurrentModal('campaigns')" href="#">The Campaign</a></li>
                             <!-- <li><span class="currentCampaign">Current: <span class="red">{{ currentCampaign["name"] }}</span></span></li> -->
-                            <li><a v-on:click="setCurrentModal('manifest')" href="#">Manifest</a></li>
                             <li><a v-on:click="setCurrentModal('journal')" href="#">Journal:</a></li>
                             <li v-for="currentJournalEntry in journalEntries" v-on:click="setCurrentModal('journal')"><span class="currentCampaign">
                                     <a v-on:click="setCurrentJournalEntry(currentJournalEntry)" href="#{{currentJournalEntry.slug}}">{{currentJournalEntry.title}}</span>
