@@ -84,7 +84,8 @@ function create_map() {
 }
 
 function fill_map(rides, courses, showMetaPins) {
-    for (var ride of rides) {
+    for (var rideIDX in rides) {
+        var ride = rides[rideIDX];
         var gpx = ride.trackfile;
         if (ride == rides[rides.length - 1]) {
             _add_gpx(map, gpx, "#FA2A00", 1.0, showMetaPins, true);
@@ -93,7 +94,8 @@ function fill_map(rides, courses, showMetaPins) {
         }
     }
 
-    for (var course of courses) {
+    for (var courseIDX in courses) {
+        var course = courses[courseIDX];
         var gpx = course.trackfile;
         _add_gpx(map, gpx, "#000", 0.6, showMetaPins, false);
     }
@@ -123,7 +125,8 @@ function create_app() {
                 var self = this;
                 this.$http.get('/api/instagram_pois').then((response) => {
                     close_all_popups();
-                    for (var poi of response.data) {
+                    for (var poiIDX in response.data) {
+                        var poi = response.data[poiIDX];
                         if (poi.cached_response.meta.code == "200") {
                             var imageData = poi.cached_response.data.images;
                             var marker = new L.Marker([poi["poi"]["lat"], poi["poi"]["lng"]], {
@@ -145,7 +148,8 @@ function create_app() {
 
                 this.$http.get('/api/entry_pois').then((response) => {
                     close_all_popups();
-                    for (var poi of response.data) {
+                    for (var poiIDX in response.data) {
+                        var poi = response.data[poiIDX];
                         var lat = poi["poi"]["lat"];
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
@@ -160,7 +164,8 @@ function create_app() {
                             map.setView([lat, lng], zoom);
 
                             self.setCurrentModal('journal');
-                            for (var entry of self.journalEntries) {
+                            for (var entryIDX in self.journalEntries) {
+                                var entry = self.journalEntries[entryIDX];
                                 if (poi["entry"]["slug"] == entry.slug) {
                                 self.setCurrentJournalEntry(entry);
                                 Vue.nextTick(function() {
@@ -183,7 +188,8 @@ function create_app() {
 
                 this.$http.get('/api/text_pois').then((response) => {
                     close_all_popups();
-                    for (var poi of response.data) {
+                    for (var poiIDX in response.data) {
+                        var poi = response.data[poiIDX];
                         var lat = poi["poi"]["lat"];
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
@@ -238,7 +244,8 @@ function create_app() {
             financeTotals: function() {
                 var total = 0;
                 for (var x in this.financials) {
-                    for (var y of this.financials[x]) {
+                    for (var yIDX in this.financials[x]) {
+                        var y = this.financials[x][yIDX];
                         total += parseFloat(y[1]);
                     }
                 }
@@ -253,7 +260,8 @@ function create_app() {
 
                 Vue.nextTick(function() {
                     if (window.location.hash != null) {
-                        for (var entry of self.journalEntries) {
+                        for (var entryIDX in self.journalEntries) {
+                            var entry = self.journalEntries[entryIDX];
                             if (window.location.hash == "#" + entry.slug) {
                                 self.setCurrentJournalEntry(entry);
                                 self.setCurrentModal('journal');
