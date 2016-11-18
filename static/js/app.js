@@ -299,4 +299,6 @@ function init() {
     create_app();
 }
 
-
+$(function() {
+    init();
+});
