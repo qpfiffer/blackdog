@@ -183,7 +183,8 @@
     <script type="text/javascript">
         $(function() {
             var messages = {{all_messages|safe}};
-            for (var message of messages) {
+            for (var messageIDX in messages) {
+                var message = messages[messageIDX];
                 $.notify(message, "info");
             }
             init();
