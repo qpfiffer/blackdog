@@ -180,7 +180,7 @@ function create_app() {
                         }
                         marker.on('click', onEntryClick);
                     };
-                }});
+                });
 
                 this.$http.get('/api/text_pois').then(function (response) {
                     close_all_popups();
