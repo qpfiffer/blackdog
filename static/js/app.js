@@ -244,7 +244,7 @@ function create_app() {
                 return total;
             }
         },
-        ready() {
+        ready: function () {
             this.$http.get('/api/blog').then(function (response) {
                 this.journalEntries = response.data;
                 this.currentJournalEntry = null;
