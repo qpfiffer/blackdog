@@ -123,7 +123,7 @@ function create_app() {
             },
             updatePOIs: function() {
                 var self = this;
-                this.$http.get('/api/instagram_pois').then((response) => {
+                this.$http.get('/api/instagram_pois').then(function (response) {
                     close_all_popups();
                     for (var poiIDX in response.data) {
                         var poi = response.data[poiIDX];
@@ -142,11 +142,9 @@ function create_app() {
                             marker.bindPopup(popup)
                         }
                     };
-                }, (response) => {
-                    // Nope.
                 });
 
-                this.$http.get('/api/entry_pois').then((response) => {
+                this.$http.get('/api/entry_pois').then(function (response) {
                     close_all_popups();
                     for (var poiIDX in response.data) {
                         var poi = response.data[poiIDX];
@@ -182,11 +180,9 @@ function create_app() {
                         }
                         marker.on('click', onEntryClick);
                     };
-                }, (response) => {
-                    // Nope.
-                });
+                }});
 
-                this.$http.get('/api/text_pois').then((response) => {
+                this.$http.get('/api/text_pois').then(function (response) {
                     close_all_popups();
                     for (var poiIDX in response.data) {
                         var poi = response.data[poiIDX];
@@ -201,8 +197,6 @@ function create_app() {
                         var popup = L.popup() .setContent(poi.text);
                         marker.bindPopup(popup)
                     };
-                }, (response) => {
-                    // Nope.
                 });
             },
             setCurrentJournalEntry: function(journalEntry) {
@@ -222,10 +216,8 @@ function create_app() {
                 };
                 var self = this;
 
-                this.$http.post('/add_poi/', data, {headers: {"X-CSRFToken": csrftoken}}).then((response) => {
+                this.$http.post('/add_poi/', data, {headers: {"X-CSRFToken": csrftoken}}).then(function (response) {
                     self.updatePOIs();
-                }, (response) => {
-                    // Nope.
                 });
             },
             setCurrentModal: function(name) {
@@ -253,7 +245,7 @@ function create_app() {
             }
         },
         ready() {
-            this.$http.get('/api/blog').then((response) => {
+            this.$http.get('/api/blog').then(function (response) {
                 this.journalEntries = response.data;
                 this.currentJournalEntry = null;
                 var self = this;
@@ -278,17 +270,13 @@ function create_app() {
                         }
                     }
                 });
-            }, (response) => {
-                // Nope.
             });
 
-            this.$http.get('/api/campaigns').then((response) => {
+            this.$http.get('/api/campaigns').then(function (response) {
                 this.campaigns = response.data;
                 var randomCampaignIDX = Math.floor(Math.random() * this.campaigns.length);
                 this.currentCampaign = this.campaigns[randomCampaignIDX];
                 this.changeCampaign(randomCampaignIDX);
-            }, (response) => {
-                // Nope.
             });
 
             this.updatePOIs();
