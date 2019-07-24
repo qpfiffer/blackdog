@@ -125,8 +125,9 @@ function create_app() {
                 var self = this;
                 this.$http.get('/api/instagram_pois').then(function (response) {
                     close_all_popups();
-                    for (var poiIDX in response.data) {
-                        var poi = response.data[poiIDX];
+                    var response_data = JSON.parse(response.data);
+                    for (var poiIDX in response_data) {
+                        var poi = response_data[poiIDX];
                         if (poi.cached_response.meta.code == "200") {
                             var imageData = poi.cached_response.data.images;
                             var marker = new L.Marker([poi["poi"]["lat"], poi["poi"]["lng"]], {
@@ -146,8 +147,9 @@ function create_app() {
 
                 this.$http.get('/api/entry_pois').then(function (response) {
                     close_all_popups();
-                    for (var poiIDX in response.data) {
-                        var poi = response.data[poiIDX];
+                    var response_data = JSON.parse(response.data);
+                    for (var poiIDX in response_data) {
+                        var poi = response_data[poiIDX];
                         var lat = poi["poi"]["lat"];
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
@@ -184,8 +186,9 @@ function create_app() {
 
                 this.$http.get('/api/text_pois').then(function (response) {
                     close_all_popups();
-                    for (var poiIDX in response.data) {
-                        var poi = response.data[poiIDX];
+                    var response_data = JSON.parse(response.data);
+                    for (var poiIDX in response_data) {
+                        var poi = response_data[poiIDX];
                         var lat = poi["poi"]["lat"];
                         var lng = poi["poi"]["lng"];
                         var marker = new L.Marker([lat, lng], {
@@ -246,7 +249,8 @@ function create_app() {
         },
         ready: function () {
             this.$http.get('/api/blog').then(function (response) {
-                this.journalEntries = response.data;
+                var response_data = JSON.parse(response.data);
+                this.journalEntries = response_data;
                 this.currentJournalEntry = null;
                 var self = this;
 
@@ -273,7 +277,8 @@ function create_app() {
             });
 
             this.$http.get('/api/campaigns').then(function (response) {
-                this.campaigns = response.data;
+                var response_data = JSON.parse(response.data);
+                this.campaigns = response_data;
                 var randomCampaignIDX = Math.floor(Math.random() * this.campaigns.length);
                 this.currentCampaign = this.campaigns[randomCampaignIDX];
                 this.changeCampaign(randomCampaignIDX);
